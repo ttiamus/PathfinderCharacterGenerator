@@ -9,41 +9,40 @@ namespace DAL.Character
 {
     public class CharacterRepository : ICharacterRepository
     {
-        MongoClient Client = new MongoClient("mongodb://localhost:27017");
-        IMongoDatabase Database;
-        IMongoCollection<Character> Collection;
+        private readonly MongoClient client = new MongoClient("mongodb://localhost:27017");
+        private readonly IMongoCollection<Character> collection;
 
         public CharacterRepository()
         {
-            Database = Client.GetDatabase("databaseName");
-            Collection = Database.GetCollection<Character>("CollectionName");
+            var database = client.GetDatabase("databaseName");
+            collection = database.GetCollection<Character>("CollectionName");
         }
 
         public async Task<IEnumerable<Core.Character.Character>> GetCharacters()
         {
-            var Characters = await Collection.Find(x => true).ToListAsync();
-            return Characters.Select(Character => Character.ToCore());
+            var characters = await collection.Find(x => true).ToListAsync();
+            return characters.Select(character => character.ToCore());
         }
 
         public async Task<Core.Character.Character> GetCharacter(int id)
         {
-            var Character = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
-            return Character.ToCore();
+            var character = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return character.ToCore();
         }
 
-        public async Task InsertCharacter(Core.Character.Character Character)
+        public async Task InsertCharacter(Core.Character.Character character)
         {
-            await Collection.InsertOneAsync(Character.ToDal());
+            await collection.InsertOneAsync(character.ToDal());
         }
 
-        public async Task UpdateCharacter(Character Character)
+        public async Task UpdateCharacter(Character character)
         {
-            await Collection.ReplaceOneAsync(x => x.Id == Character.Id, Character);
+            await collection.ReplaceOneAsync(x => x.Id == character.Id, character);
         }
 
         public async Task DeleteCharacter(int id)
         {
-            await Collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id == id);
         }
     }
 }

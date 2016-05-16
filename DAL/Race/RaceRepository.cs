@@ -9,41 +9,40 @@ namespace DAL.Race
 {
     public class RaceRepository : IRaceRepository
     {
-        MongoClient Client = new MongoClient("mongodb://localhost:27017");
-        IMongoDatabase Database;
-        IMongoCollection<Race> Collection;
+        private readonly MongoClient client = new MongoClient("mongodb://localhost:27017");
+        private readonly IMongoCollection<Race> collection;
 
         public RaceRepository()
         {
-            Database = Client.GetDatabase("databaseName");
-            Collection = Database.GetCollection<Race>("CollectionName");
+            IMongoDatabase database = client.GetDatabase("databaseName");
+            collection = database.GetCollection<Race>("CollectionName");
         }
 
         public async Task<IEnumerable<Core.Race.Race>> GetRaces()
         {
-            var Races = await Collection.Find(x => true).ToListAsync();
-            return Races.Select(Race => Race.ToCore());
+            var races = await collection.Find(x => true).ToListAsync();
+            return races.Select(race => race.ToCore());
         }
 
         public async Task<Core.Race.Race> GetRace(int id)
         {
-            var Race = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
-            return Race.ToCore();
+            var race = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return race.ToCore();
         }
 
-        public async Task InsertRace(Core.Race.Race Race)
+        public async Task InsertRace(Core.Race.Race race)
         {
-            await Collection.InsertOneAsync(Race.ToDal());
+            await collection.InsertOneAsync(race.ToDal());
         }
 
-        public async Task UpdateRace(Race Race)
+        public async Task UpdateRace(Race race)
         {
-            await Collection.ReplaceOneAsync(x => x.Id == Race.Id, Race);
+            await collection.ReplaceOneAsync(x => x.Id == race.Id, race);
         }
 
         public async Task DeleteRace(int id)
         {
-            await Collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id == id);
         }
     }
 }
