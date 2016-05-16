@@ -1,0 +1,5 @@
+C:\Repo\CharacterGenerator\Options\bin\Debug\Options.dll
+C:\Repo\CharacterGenerator\Options\bin\Debug\Options.pdb
+C:\Repo\CharacterGenerator\Options\obj\Debug\Options.csprojResolveAssemblyReference.cache
+C:\Repo\CharacterGenerator\Options\obj\Debug\Options.dll
+C:\Repo\CharacterGenerator\Options\obj\Debug\Options.pdb

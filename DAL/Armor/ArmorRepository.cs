@@ -36,14 +36,14 @@ namespace DAL.Armor
             await Collection.InsertOneAsync(armor.ToDal());
         }
 
-        public void UpdateArmor(int id)
+        public async Task UpdateArmor(Armor armor)
         {
-            throw new NotImplementedException();
+            await Collection.ReplaceOneAsync(x => x.Id == armor.Id, armor);
         }
 
-        public void DeleteArmor(int id)
+        public async Task DeleteArmor(int id)
         {
-            throw new NotImplementedException();
+            await Collection.DeleteOneAsync(x => x.Id == id);
         }
     }
 }

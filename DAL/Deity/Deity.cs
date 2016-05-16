@@ -8,5 +8,6 @@ namespace DAL.Deity
 {
     public class Deity
     {
+        public int Id { get; set; }
     }
 }

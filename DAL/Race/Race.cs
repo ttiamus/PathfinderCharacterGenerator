@@ -8,5 +8,6 @@ namespace DAL.Race
 {
     public class Race
     {
+        public int Id { get; set; }
     }
 }

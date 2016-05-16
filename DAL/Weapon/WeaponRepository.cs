@@ -1,49 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Core.Weapon;
+using MongoDB.Driver;
 
 namespace DAL.Weapon
 {
     public class WeaponRepository : IWeaponRepository
     {
+        MongoClient Client = new MongoClient("mongodb://localhost:27017");
+        IMongoDatabase Database;
+        IMongoCollection<Weapon> Collection;
+
         public WeaponRepository()
         {
+            Database = Client.GetDatabase("databaseName");
+            Collection = Database.GetCollection<Weapon>("CollectionName");
         }
 
-        public IEnumerable<Core.Weapon.Weapon> GetWeapons()
+        public async Task<IEnumerable<Core.Weapon.Weapon>> GetWeapons()
         {
-            throw new NotImplementedException();
+            var Weapons = await Collection.Find(x => true).ToListAsync();
+            return Weapons.Select(Weapon => Weapon.ToCore());
         }
 
-        public Core.Weapon.Weapon GetWeapon(int id)
+        public async Task<Core.Weapon.Weapon> GetWeapon(int id)
         {
-            throw new NotImplementedException();
+            var Weapon = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return Weapon.ToCore();
         }
 
-        public void UpdateWeapon(int id)
+        public async Task InsertWeapon(Core.Weapon.Weapon Weapon)
         {
-            throw new NotImplementedException();
+            await Collection.InsertOneAsync(Weapon.ToDal());
         }
 
-        public void DeleteWeapon(int id)
+        public async Task UpdateWeapon(Weapon Weapon)
         {
-            throw new NotImplementedException();
+            await Collection.ReplaceOneAsync(x => x.Id == Weapon.Id, Weapon);
         }
 
-        private Core.Weapon.Weapon ToCore(Weapon dal)
+        public async Task DeleteWeapon(int id)
         {
-            return new Core.Weapon.Weapon()
-            {
-
-            };
-        }
-
-        private Weapon ToDal(Core.Weapon.Weapon core)
-        {
-            return new Weapon()
-            {
-
-            };
+            await Collection.DeleteOneAsync(x => x.Id == id);
         }
     }
 }

@@ -1,49 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Core.Feat;
+using MongoDB.Driver;
 
 namespace DAL.Feat
 {
     public class FeatRepository : IFeatRepository
     {
+        MongoClient Client = new MongoClient("mongodb://localhost:27017");
+        IMongoDatabase Database;
+        IMongoCollection<Feat> Collection;
+
         public FeatRepository()
         {
+            Database = Client.GetDatabase("databaseName");
+            Collection = Database.GetCollection<Feat>("CollectionName");
         }
 
-        public IEnumerable<Core.Feat.Feat> GetFeats()
+        public async Task<IEnumerable<Core.Feat.Feat>> GetFeats()
         {
-            throw new NotImplementedException();
+            var Feats = await Collection.Find(x => true).ToListAsync();
+            return Feats.Select(Feat => Feat.ToCore());
         }
 
-        public Core.Feat.Feat GetFeat(int id)
+        public async Task<Core.Feat.Feat> GetFeat(int id)
         {
-            throw new NotImplementedException();
+            var Feat = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return Feat.ToCore();
         }
 
-        public void UpdateFeat(int id)
+        public async Task InsertFeat(Core.Feat.Feat Feat)
         {
-            throw new NotImplementedException();
+            await Collection.InsertOneAsync(Feat.ToDal());
         }
 
-        public void DeleteFeat(int id)
+        public async Task UpdateFeat(Feat Feat)
         {
-            throw new NotImplementedException();
+            await Collection.ReplaceOneAsync(x => x.Id == Feat.Id, Feat);
         }
 
-        private Core.Feat.Feat ToCore(Feat dal)
+        public async Task DeleteFeat(int id)
         {
-            return new Core.Feat.Feat()
-            {
-
-            };
-        }
-
-        private Feat ToDal(Core.Feat.Feat core)
-        {
-            return new Feat()
-            {
-
-            };
+            await Collection.DeleteOneAsync(x => x.Id == id);
         }
     }
 }

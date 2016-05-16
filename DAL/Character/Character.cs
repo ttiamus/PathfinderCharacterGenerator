@@ -8,5 +8,6 @@ namespace DAL.Character
 {
     public class Character
     {
+        public int Id { get; set; }
     }
 }

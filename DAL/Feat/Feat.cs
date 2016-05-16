@@ -8,5 +8,6 @@ namespace DAL.Feat
 {
     public class Feat
     {
+        public int Id { get; set; }
     }
 }

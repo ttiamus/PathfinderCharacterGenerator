@@ -55,18 +55,24 @@
     <Compile Include="Armor\ArmorMapper.cs" />
     <Compile Include="Armor\Armor.cs" />
     <Compile Include="Armor\ArmorRepository.cs" />
+    <Compile Include="Character\CharacterMapper.cs" />
     <Compile Include="Character\Character.cs" />
     <Compile Include="Character\CharacterRepository.cs" />
     <Compile Include="Deity\Deity.cs" />
+    <Compile Include="Deity\DeityMapper.cs" />
     <Compile Include="Deity\DeityRepository.cs" />
     <Compile Include="Feat\Feat.cs" />
+    <Compile Include="Feat\FeatMapper.cs" />
     <Compile Include="Feat\FeatRepository.cs" />
     <Compile Include="Item\Item.cs" />
+    <Compile Include="Item\ItemMapper.cs" />
     <Compile Include="Item\ItemRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Race\Race.cs" />
+    <Compile Include="Race\RaceMapper.cs" />
     <Compile Include="Race\RaceRepository.cs" />
     <Compile Include="Weapon\Weapon.cs" />
+    <Compile Include="Weapon\WeaponMapper.cs" />
     <Compile Include="Weapon\WeaponRepository.cs" />
   </ItemGroup>
   <ItemGroup>

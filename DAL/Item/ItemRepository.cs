@@ -1,49 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Core.Item;
+using MongoDB.Driver;
 
 namespace DAL.Item
 {
     public class ItemRepository : IItemRepository
     {
+        MongoClient Client = new MongoClient("mongodb://localhost:27017");
+        IMongoDatabase Database;
+        IMongoCollection<Item> Collection;
+
         public ItemRepository()
         {
+            Database = Client.GetDatabase("databaseName");
+            Collection = Database.GetCollection<Item>("CollectionName");
         }
 
-        public IEnumerable<Core.Item.Item> GetItems()
+        public async Task<IEnumerable<Core.Item.Item>> GetItems()
         {
-            throw new NotImplementedException();
+            var Items = await Collection.Find(x => true).ToListAsync();
+            return Items.Select(Item => Item.ToCore());
         }
 
-        public Core.Item.Item GetItem(int id)
+        public async Task<Core.Item.Item> GetItem(int id)
         {
-            throw new NotImplementedException();
+            var Item = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return Item.ToCore();
         }
 
-        public void UpdateItem(int id)
+        public async Task InsertItem(Core.Item.Item Item)
         {
-            throw new NotImplementedException();
+            await Collection.InsertOneAsync(Item.ToDal());
         }
 
-        public void DeleteItem(int id)
+        public async Task UpdateItem(Item Item)
         {
-            throw new NotImplementedException();
+            await Collection.ReplaceOneAsync(x => x.Id == Item.Id, Item);
         }
 
-        private Core.Item.Item ToCore(Item dal)
+        public async Task DeleteItem(int id)
         {
-            return new Core.Item.Item()
-            {
-
-            };
-        }
-
-        private Item ToDal(Core.Item.Item core)
-        {
-            return new Item()
-            {
-
-            };
+            await Collection.DeleteOneAsync(x => x.Id == id);
         }
     }
 }

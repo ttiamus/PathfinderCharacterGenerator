@@ -1,49 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Core.Deity;
+using MongoDB.Driver;
 
 namespace DAL.Deity
 {
     public class DeityRepository : IDeityRepository
     {
+        MongoClient Client = new MongoClient("mongodb://localhost:27017");
+        IMongoDatabase Database;
+        IMongoCollection<Deity> Collection;
+
         public DeityRepository()
         {
+            Database = Client.GetDatabase("databaseName");
+            Collection = Database.GetCollection<Deity>("CollectionName");
         }
 
-        public IEnumerable<Core.Deity.Deity> GetDeitys()
+        public async Task<IEnumerable<Core.Deity.Deity>> GetDeitys()
         {
-            throw new NotImplementedException();
+            var Deitys = await Collection.Find(x => true).ToListAsync();
+            return Deitys.Select(Deity => Deity.ToCore());
         }
 
-        public Core.Deity.Deity GetDeity(int id)
+        public async Task<Core.Deity.Deity> GetDeity(int id)
         {
-            throw new NotImplementedException();
+            var Deity = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return Deity.ToCore();
         }
 
-        public void UpdateDeity(int id)
+        public async Task InsertDeity(Core.Deity.Deity Deity)
         {
-            throw new NotImplementedException();
+            await Collection.InsertOneAsync(Deity.ToDal());
         }
 
-        public void DeleteDeity(int id)
+        public async Task UpdateDeity(Deity Deity)
         {
-            throw new NotImplementedException();
+            await Collection.ReplaceOneAsync(x => x.Id == Deity.Id, Deity);
         }
 
-        private Core.Deity.Deity ToCore(Deity dal)
+        public async Task DeleteDeity(int id)
         {
-            return new Core.Deity.Deity()
-            {
-
-            };
-        }
-
-        private Deity ToDal(Core.Deity.Deity core)
-        {
-            return new Deity()
-            {
-
-            };
+            await Collection.DeleteOneAsync(x => x.Id == id);
         }
     }
 }

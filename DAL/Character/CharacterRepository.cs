@@ -1,49 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Core.Character;
+using MongoDB.Driver;
 
 namespace DAL.Character
 {
     public class CharacterRepository : ICharacterRepository
     {
+        MongoClient Client = new MongoClient("mongodb://localhost:27017");
+        IMongoDatabase Database;
+        IMongoCollection<Character> Collection;
+
         public CharacterRepository()
         {
+            Database = Client.GetDatabase("databaseName");
+            Collection = Database.GetCollection<Character>("CollectionName");
         }
 
-        public IEnumerable<Core.Character.Character> GetCharacters()
+        public async Task<IEnumerable<Core.Character.Character>> GetCharacters()
         {
-            throw new NotImplementedException();
+            var Characters = await Collection.Find(x => true).ToListAsync();
+            return Characters.Select(Character => Character.ToCore());
         }
 
-        public Core.Character.Character GetCharacter(int id)
+        public async Task<Core.Character.Character> GetCharacter(int id)
         {
-            throw new NotImplementedException();
+            var Character = await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            return Character.ToCore();
         }
 
-        public void UpdateCharacter(int id)
+        public async Task InsertCharacter(Core.Character.Character Character)
         {
-            throw new NotImplementedException();
+            await Collection.InsertOneAsync(Character.ToDal());
         }
 
-        public void DeleteCharacter(int id)
+        public async Task UpdateCharacter(Character Character)
         {
-            throw new NotImplementedException();
+            await Collection.ReplaceOneAsync(x => x.Id == Character.Id, Character);
         }
 
-        private Core.Character.Character ToCore(Character dal)
+        public async Task DeleteCharacter(int id)
         {
-            return new Core.Character.Character()
-            {
-
-            };
-        }
-
-        private Character ToDal(Core.Character.Character core)
-        {
-            return new Character()
-            {
-
-            };
+            await Collection.DeleteOneAsync(x => x.Id == id);
         }
     }
 }

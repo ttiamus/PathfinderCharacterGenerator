@@ -8,5 +8,6 @@ namespace DAL.Weapon
 {
     public class Weapon
     {
+        public int Id { get; set; }
     }
 }
