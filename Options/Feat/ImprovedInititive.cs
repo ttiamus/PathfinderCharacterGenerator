@@ -23,7 +23,7 @@ namespace Options.Feat
 
         public T Remove(T character)
         {
-            //Remove bonus to inititive
+            //Remove bonus to inititive 
             return character;
         }
     }
