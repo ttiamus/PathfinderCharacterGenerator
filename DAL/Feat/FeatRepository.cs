@@ -14,8 +14,8 @@ namespace DAL.Feat
 
         public FeatRepository()
         {
-            var database = client.GetDatabase("databaseName");
-            collection = database.GetCollection<Feat>("CollectionName");
+            var database = client.GetDatabase("CharacterGenerator");
+            collection = database.GetCollection<Feat>("Feats");
         }
 
         public async Task<IEnumerable<Core.Feat.Feat>> GetFeats()
@@ -24,9 +24,9 @@ namespace DAL.Feat
             return feats.Select(feat => feat.ToCore());
         }
 
-        public async Task<Core.Feat.Feat> GetFeat(int id)
+        public async Task<Core.Feat.Feat> GetFeat(string id)
         {
-            var feat = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            var feat = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
             return feat.ToCore();
         }
 
@@ -37,12 +37,12 @@ namespace DAL.Feat
 
         public async Task UpdateFeat(Feat feat)
         {
-            await collection.ReplaceOneAsync(x => x.Id == feat.Id, feat);
+            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(feat.Id.ToLower()), feat);
         }
 
-        public async Task DeleteFeat(int id)
+        public async Task DeleteFeat(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
         }
     }
 }

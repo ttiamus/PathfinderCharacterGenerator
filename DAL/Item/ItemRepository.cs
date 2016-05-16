@@ -14,8 +14,8 @@ namespace DAL.Item
 
         public ItemRepository()
         {
-            var database = client.GetDatabase("databaseName");
-            collection = database.GetCollection<Item>("CollectionName");
+            var database = client.GetDatabase("CharacterGenerator");
+            collection = database.GetCollection<Item>("Items");
         }
 
         public async Task<IEnumerable<Core.Item.Item>> GetItems()
@@ -24,9 +24,9 @@ namespace DAL.Item
             return items.Select(item => item.ToCore());
         }
 
-        public async Task<Core.Item.Item> GetItem(int id)
+        public async Task<Core.Item.Item> GetItem(string id)
         {
-            var item = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            var item = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
             return item.ToCore();
         }
 
@@ -37,12 +37,12 @@ namespace DAL.Item
 
         public async Task UpdateItem(Item item)
         {
-            await collection.ReplaceOneAsync(x => x.Id == item.Id, item);
+            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(item.Id.ToLower()), item);
         }
 
-        public async Task DeleteItem(int id)
+        public async Task DeleteItem(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
         }
     }
 }

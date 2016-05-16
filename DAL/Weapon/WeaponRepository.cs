@@ -14,8 +14,8 @@ namespace DAL.Weapon
 
         public WeaponRepository()
         {
-            var database = client.GetDatabase("databaseName");
-            collection = database.GetCollection<Weapon>("CollectionName");
+            var database = client.GetDatabase("CharacterGenerator");
+            collection = database.GetCollection<Weapon>("Weapons");
         }
 
         public async Task<IEnumerable<Core.Weapon.Weapon>> GetWeapons()
@@ -24,9 +24,9 @@ namespace DAL.Weapon
             return weapons.Select(weapon => weapon.ToCore());
         }
 
-        public async Task<Core.Weapon.Weapon> GetWeapon(int id)
+        public async Task<Core.Weapon.Weapon> GetWeapon(string id)
         {
-            var weapon = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            var weapon = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
             return weapon.ToCore();
         }
 
@@ -37,12 +37,12 @@ namespace DAL.Weapon
 
         public async Task UpdateWeapon(Weapon weapon)
         {
-            await collection.ReplaceOneAsync(x => x.Id == weapon.Id, weapon);
+            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(weapon.Id.ToLower()), weapon);
         }
 
-        public async Task DeleteWeapon(int id)
+        public async Task DeleteWeapon(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
         }
     }
 }

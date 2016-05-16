@@ -14,8 +14,8 @@ namespace DAL.Character
 
         public CharacterRepository()
         {
-            var database = client.GetDatabase("databaseName");
-            collection = database.GetCollection<Character>("CollectionName");
+            var database = client.GetDatabase("CharacterGenerator");
+            collection = database.GetCollection<Character>("Characters");
         }
 
         public async Task<IEnumerable<Core.Character.Character>> GetCharacters()
@@ -24,9 +24,9 @@ namespace DAL.Character
             return characters.Select(character => character.ToCore());
         }
 
-        public async Task<Core.Character.Character> GetCharacter(int id)
+        public async Task<Core.Character.Character> GetCharacter(string id)
         {
-            var character = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            var character = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
             return character.ToCore();
         }
 
@@ -37,12 +37,12 @@ namespace DAL.Character
 
         public async Task UpdateCharacter(Character character)
         {
-            await collection.ReplaceOneAsync(x => x.Id == character.Id, character);
+            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(character.Id.ToLower()), character);
         }
 
-        public async Task DeleteCharacter(int id)
+        public async Task DeleteCharacter(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
         }
     }
 }

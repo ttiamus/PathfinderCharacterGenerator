@@ -14,8 +14,8 @@ namespace DAL.Deity
 
         public DeityRepository()
         {
-            var database = client.GetDatabase("databaseName");
-            collection = database.GetCollection<Deity>("CollectionName");
+            var database = client.GetDatabase("CharacterGenerator");
+            collection = database.GetCollection<Deity>("Deities");
         }
 
         public async Task<IEnumerable<Core.Deity.Deity>> GetDeitys()
@@ -24,9 +24,9 @@ namespace DAL.Deity
             return deitys.Select(deity => deity.ToCore());
         }
 
-        public async Task<Core.Deity.Deity> GetDeity(int id)
+        public async Task<Core.Deity.Deity> GetDeity(string id)
         {
-            var deity = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            var deity = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
             return deity.ToCore();
         }
 
@@ -37,12 +37,12 @@ namespace DAL.Deity
 
         public async Task UpdateDeity(Deity deity)
         {
-            await collection.ReplaceOneAsync(x => x.Id == deity.Id, deity);
+            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(deity.Id.ToLower()), deity);
         }
 
-        public async Task DeleteDeity(int id)
+        public async Task DeleteDeity(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
         }
     }
 }

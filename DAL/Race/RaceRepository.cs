@@ -14,8 +14,8 @@ namespace DAL.Race
 
         public RaceRepository()
         {
-            IMongoDatabase database = client.GetDatabase("databaseName");
-            collection = database.GetCollection<Race>("CollectionName");
+            IMongoDatabase database = client.GetDatabase("CharacterGenerator");
+            collection = database.GetCollection<Race>("Races");
         }
 
         public async Task<IEnumerable<Core.Race.Race>> GetRaces()
@@ -24,9 +24,9 @@ namespace DAL.Race
             return races.Select(race => race.ToCore());
         }
 
-        public async Task<Core.Race.Race> GetRace(int id)
+        public async Task<Core.Race.Race> GetRace(string id)
         {
-            var race = await collection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            var race = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
             return race.ToCore();
         }
 
@@ -37,12 +37,12 @@ namespace DAL.Race
 
         public async Task UpdateRace(Race race)
         {
-            await collection.ReplaceOneAsync(x => x.Id == race.Id, race);
+            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(race.Id.ToLower()), race);
         }
 
-        public async Task DeleteRace(int id)
+        public async Task DeleteRace(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
         }
     }
 }

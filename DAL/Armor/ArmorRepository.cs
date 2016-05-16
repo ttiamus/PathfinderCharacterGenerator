@@ -14,8 +14,8 @@ namespace DAL.Armor
 
         public ArmorRepository()
         {
-            IMongoDatabase database = client.GetDatabase("databaseName");
-            collection = database.GetCollection<Armor>("CollectionName");
+            IMongoDatabase database = client.GetDatabase("CharacterGenerator");
+            collection = database.GetCollection<Armor>("Armors");
         }
 
         public async Task<IEnumerable<Core.Armor.Armor>> GetArmors()
@@ -24,9 +24,9 @@ namespace DAL.Armor
             return armors.Select(armor => armor.ToCore());
         }
 
-        public async Task<Core.Armor.Armor> GetArmor(int id)
+        public async Task<Core.Armor.Armor> GetArmor(string id)
         {
-            var armor = await collection.Find(x=> x.Id == id).FirstOrDefaultAsync();
+            var armor = await collection.Find(x=> x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
             return armor.ToCore();
         }
 
@@ -37,12 +37,12 @@ namespace DAL.Armor
 
         public async Task UpdateArmor(Armor armor)
         {
-            await collection.ReplaceOneAsync(x => x.Id == armor.Id, armor);
+            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(armor.Id.ToLower()), armor);
         }
 
-        public async Task DeleteArmor(int id)
+        public async Task DeleteArmor(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id == id);
+            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
         }
     }
 }
