@@ -23,7 +23,7 @@ namespace API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var builder = new Resolver().Builder;
+            var builder = new Bootstrapper().GetBuilder();
 
             //var builder = new ContainerBuilder();
 

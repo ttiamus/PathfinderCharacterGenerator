@@ -12,7 +12,16 @@ namespace DAL.Weapon
         {
             return new Core.Weapon.Weapon()
             {
-
+                Id = dal.Id.ToString(),
+                Cost = dal.Cost,
+                CriticalMultiplier = dal.CriticalMultiplier,
+                CriticalThreatRange = dal.CriticalThreatRange,
+                DamageDice = dal.DamageDice,
+                DamageType = dal.DamageType,
+                NumberOfDice = dal.NumberOfDice,
+                Properties = dal.Properties,
+                Range = dal.Range,
+                Weight = dal.Weight
             };
         }
 
@@ -20,7 +29,15 @@ namespace DAL.Weapon
         {
             return new Weapon()
             {
-
+                Cost = core.Cost,
+                CriticalMultiplier = core.CriticalMultiplier,
+                CriticalThreatRange = core.CriticalThreatRange,
+                DamageDice = core.DamageDice,
+                DamageType = core.DamageType,
+                NumberOfDice = core.NumberOfDice,
+                Properties = core.Properties,
+                Range = core.Range,
+                Weight = core.Weight
             };
         }
     }

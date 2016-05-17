@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Options.Option;
-
-namespace Options
+﻿namespace Options.Option
 {
     public abstract class Option<T> : IOption<T>
     {

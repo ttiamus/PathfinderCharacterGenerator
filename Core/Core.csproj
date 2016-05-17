@@ -52,6 +52,7 @@
     <Compile Include="Deity\DeityService.cs" />
     <Compile Include="Deity\IDeityRepository.cs" />
     <Compile Include="Deity\IDeityService.cs" />
+    <Compile Include="Enum\Dice.cs" />
     <Compile Include="Feat\Feat.cs" />
     <Compile Include="Feat\FeatService.cs" />
     <Compile Include="Feat\IFeatRepository.cs" />
@@ -68,9 +69,13 @@
     <Compile Include="Weapon\IWeaponRepository.cs" />
     <Compile Include="Weapon\IWeaponService.cs" />
     <Compile Include="Weapon\Weapon.cs" />
+    <Compile Include="Weapon\WeaponProperty\IWeaponProperty.cs" />
     <Compile Include="Weapon\WeaponService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Class\" />
+    <Folder Include="Trait\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

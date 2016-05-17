@@ -16,12 +16,13 @@ using DAL.Weapon;
 
 namespace DependencyResolver
 {
-    public class Resolver
+    public class Bootstrapper
     {
-        public ContainerBuilder Builder { get; set; }
 
-        public Resolver()
+        public ContainerBuilder GetBuilder()
         {
+            var Builder = new ContainerBuilder();
+            
             //Armor
             Builder.RegisterType<ArmorService>().As<IArmorService>().InstancePerRequest();
             Builder.RegisterType<ArmorRepository>().As<IArmorRepository>().InstancePerRequest();
@@ -49,6 +50,8 @@ namespace DependencyResolver
             //Weapon
             Builder.RegisterType<WeaponService>().As<IWeaponService>().InstancePerRequest();
             Builder.RegisterType<WeaponRepository>().As<IWeaponRepository>().InstancePerRequest();
+
+            return Builder;
         }
     }
 }
