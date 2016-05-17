@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Armor;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DAL.Armor
@@ -26,7 +27,8 @@ namespace DAL.Armor
 
         public async Task<Core.Armor.Armor> GetArmor(string id)
         {
-            var armor = await collection.Find(x=> x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
+
+            var armor = await collection.Find(x=> x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
             return armor.ToCore();
         }
 
@@ -35,14 +37,14 @@ namespace DAL.Armor
             await collection.InsertOneAsync(armor.ToDal());
         }
 
-        public async Task UpdateArmor(Armor armor)
+        public async Task UpdateArmor(Core.Armor.Armor armor)
         {
-            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(armor.Id.ToLower()), armor);
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(armor.Id)), armor.ToDal());
         }
 
         public async Task DeleteArmor(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
         }
     }
 }

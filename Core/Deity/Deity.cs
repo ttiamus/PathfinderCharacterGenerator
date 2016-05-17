@@ -8,5 +8,6 @@ namespace Core.Deity
 {
     public class Deity
     {
+        public string Id { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace Core.Character
 {
     public class Character
     {
+        public string Id { get; set; }
     }
 }

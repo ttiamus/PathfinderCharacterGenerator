@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Race;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DAL.Race
@@ -26,7 +27,7 @@ namespace DAL.Race
 
         public async Task<Core.Race.Race> GetRace(string id)
         {
-            var race = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
+            var race = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
             return race.ToCore();
         }
 
@@ -35,14 +36,14 @@ namespace DAL.Race
             await collection.InsertOneAsync(race.ToDal());
         }
 
-        public async Task UpdateRace(Race race)
+        public async Task UpdateRace(Core.Race.Race race)
         {
-            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(race.Id.ToLower()), race);
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(race.Id)), race.ToDal());
         }
 
         public async Task DeleteRace(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
         }
     }
 }

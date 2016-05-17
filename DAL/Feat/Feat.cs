@@ -10,8 +10,6 @@ namespace DAL.Feat
 {
     public class Feat
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public ObjectId Id { get; set; }
     }
 }

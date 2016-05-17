@@ -48,8 +48,6 @@
     <Compile Include="Character\CharacterService.cs" />
     <Compile Include="Character\ICharacterRepository.cs" />
     <Compile Include="Character\ICharacterService.cs" />
-    <Compile Include="CQRS\EmptyResult.cs" />
-    <Compile Include="CQRS\Result.cs" />
     <Compile Include="Deity\Deity.cs" />
     <Compile Include="Deity\DeityService.cs" />
     <Compile Include="Deity\IDeityRepository.cs" />

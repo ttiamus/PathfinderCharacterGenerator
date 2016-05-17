@@ -8,5 +8,6 @@ namespace Core.Feat
 {
     public class Feat
     {
+        public string Id { get; set; }
     }
 }

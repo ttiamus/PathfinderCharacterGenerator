@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Feat;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DAL.Feat
@@ -26,7 +27,7 @@ namespace DAL.Feat
 
         public async Task<Core.Feat.Feat> GetFeat(string id)
         {
-            var feat = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
+            var feat = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
             return feat.ToCore();
         }
 
@@ -35,14 +36,14 @@ namespace DAL.Feat
             await collection.InsertOneAsync(feat.ToDal());
         }
 
-        public async Task UpdateFeat(Feat feat)
+        public async Task UpdateFeat(Core.Feat.Feat feat)
         {
-            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(feat.Id.ToLower()), feat);
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(feat.Id)), feat.ToDal());
         }
 
         public async Task DeleteFeat(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
         }
     }
 }

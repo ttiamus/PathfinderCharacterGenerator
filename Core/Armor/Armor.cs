@@ -8,5 +8,6 @@ namespace Core.Armor
 {
     public class Armor
     {
+        public string Id { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace Core.Race
 {
     public class Race
     {
+        public string Id { get; set; }
     }
 }

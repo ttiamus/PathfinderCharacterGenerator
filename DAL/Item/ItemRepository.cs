@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Item;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DAL.Item
@@ -26,7 +27,7 @@ namespace DAL.Item
 
         public async Task<Core.Item.Item> GetItem(string id)
         {
-            var item = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
+            var item = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
             return item.ToCore();
         }
 
@@ -35,14 +36,14 @@ namespace DAL.Item
             await collection.InsertOneAsync(item.ToDal());
         }
 
-        public async Task UpdateItem(Item item)
+        public async Task UpdateItem(Core.Item.Item item)
         {
-            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(item.Id.ToLower()), item);
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(item.Id)), item.ToDal());
         }
 
         public async Task DeleteItem(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
         }
     }
 }

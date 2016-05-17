@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Character;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DAL.Character
@@ -26,7 +27,7 @@ namespace DAL.Character
 
         public async Task<Core.Character.Character> GetCharacter(string id)
         {
-            var character = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
+            var character = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
             return character.ToCore();
         }
 
@@ -35,14 +36,14 @@ namespace DAL.Character
             await collection.InsertOneAsync(character.ToDal());
         }
 
-        public async Task UpdateCharacter(Character character)
+        public async Task UpdateCharacter(Core.Character.Character character)
         {
-            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(character.Id.ToLower()), character);
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(character.Id)), character.ToDal());
         }
 
         public async Task DeleteCharacter(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Deity;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DAL.Deity
@@ -26,7 +27,7 @@ namespace DAL.Deity
 
         public async Task<Core.Deity.Deity> GetDeity(string id)
         {
-            var deity = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
+            var deity = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
             return deity.ToCore();
         }
 
@@ -35,14 +36,14 @@ namespace DAL.Deity
             await collection.InsertOneAsync(deity.ToDal());
         }
 
-        public async Task UpdateDeity(Deity deity)
+        public async Task UpdateDeity(Core.Deity.Deity deity)
         {
-            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(deity.Id.ToLower()), deity);
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(deity.Id)), deity.ToDal());
         }
 
         public async Task DeleteDeity(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
         }
     }
 }

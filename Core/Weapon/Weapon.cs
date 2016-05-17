@@ -8,5 +8,6 @@ namespace Core.Weapon
 {
     public class Weapon
     {
+        public string Id { get; set; }
     }
 }

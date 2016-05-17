@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Weapon;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace DAL.Weapon
@@ -26,7 +27,7 @@ namespace DAL.Weapon
 
         public async Task<Core.Weapon.Weapon> GetWeapon(string id)
         {
-            var weapon = await collection.Find(x => x.Id.ToLower().Equals(id.ToLower())).FirstOrDefaultAsync();
+            var weapon = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
             return weapon.ToCore();
         }
 
@@ -35,14 +36,14 @@ namespace DAL.Weapon
             await collection.InsertOneAsync(weapon.ToDal());
         }
 
-        public async Task UpdateWeapon(Weapon weapon)
+        public async Task UpdateWeapon(Core.Weapon.Weapon weapon)
         {
-            await collection.ReplaceOneAsync(x => x.Id.ToLower().Equals(weapon.Id.ToLower()), weapon);
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(weapon.Id)), weapon.ToDal());
         }
 
         public async Task DeleteWeapon(string id)
         {
-            await collection.DeleteOneAsync(x => x.Id.ToLower().Equals(id.ToLower()));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
         }
     }
 }
