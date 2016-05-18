@@ -48,6 +48,14 @@
     <Compile Include="Option\OrOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Class\Archtype\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Item\Magic\Armor\" />
+    <Folder Include="Item\Magic\Weapon\" />
+    <Folder Include="Race\AlternateRacial\" />
+    <Folder Include="Spell\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
