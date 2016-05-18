@@ -20,7 +20,7 @@ namespace DAL.Weapon
         public string CriticalThreatRange { get; set; }
         public int CriticalMultiplier { get; set; }
         public int Range { get; set; }                                  //in feet
-        public int Weight { get; set; }                                 //in lbs
+        public decimal Weight { get; set; }                             //in lbs
         public string DamageType { get; set; }
         public IEnumerable<IWeaponProperty> Properties { get; set; }
     }
