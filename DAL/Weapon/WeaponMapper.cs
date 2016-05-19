@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 
 namespace DAL.Weapon
 {
@@ -27,7 +28,7 @@ namespace DAL.Weapon
 
         public static Weapon ToDal(this Core.Weapon.Weapon core)
         {
-            return new Weapon()
+            var weapon = new Weapon()
             {
                 Cost = core.Cost,
                 CriticalMultiplier = core.CriticalMultiplier,
@@ -39,6 +40,14 @@ namespace DAL.Weapon
                 Range = core.Range,
                 Weight = core.Weight
             };
+
+
+            if (!string.IsNullOrWhiteSpace(core.Id))
+            {
+                weapon.Id = ObjectId.Parse(core.Id);
+            }
+
+            return weapon;
         }
     }
 }
