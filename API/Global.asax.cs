@@ -23,12 +23,10 @@ namespace API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var builder = new Bootstrapper().GetBuilder();
-
-            //var builder = new ContainerBuilder();
-
             // Get your HttpConfiguration.
             var config = GlobalConfiguration.Configuration;
+
+            var builder = new Bootstrapper().GetBuilder();
 
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());

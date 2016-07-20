@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
+using Core.Item;
 
 namespace API.Controllers
 {
     public class ItemController : ApiController
     {
-        [Route("api/items")]
-        public IEnumerable<string> Get()
+        private readonly IItemService itemService;
+
+        public ItemController(IItemService itemService)
         {
-            return new string[] { "value1", "value2" };
+            this.itemService = itemService;
+        }
+
+        [Route("api/items")]
+        public async Task<IHttpActionResult> Get()
+        {
+            return Ok( await itemService.GetItems());
         }
 
         [Route("api/items/{id}")]
@@ -22,8 +31,10 @@ namespace API.Controllers
         }
 
         [Route("api/items")]
-        public void Post([FromBody]string value)
+        public async Task<IHttpActionResult> Post(Item item)
         {
+            await itemService.InsertItem(item);
+            return Ok();
         }
 
         [Route("api/items/{id}")]

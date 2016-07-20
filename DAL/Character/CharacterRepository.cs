@@ -10,7 +10,7 @@ namespace DAL.Character
 {
     public class CharacterRepository : ICharacterRepository
     {
-        private readonly MongoClient client = new MongoClient("mongodb://localhost:27017");
+        private readonly MongoClient client = new MongoClient("mongodb://tiamus-mongodb.southcentralus.cloudapp.azure.com");
         private readonly IMongoCollection<Character> collection;
 
         public CharacterRepository()

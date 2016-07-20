@@ -65,6 +65,3 @@ namespace Core.Character
         public int DodgeBonus { get; set; }
     }
 }
-
-
-}

@@ -1,0 +1,7 @@
+﻿<configuration>
+  <appSettings>
+    <add key="MongoConnectionString" value="mongodb://{0}:{1}@yourMongoServer"/>
+    <add key="MongoUsername" value="yourUsername"/>
+    <add key="MongoPassword" value="yourPassword"/>
+  </appSettings>
+</configuration>

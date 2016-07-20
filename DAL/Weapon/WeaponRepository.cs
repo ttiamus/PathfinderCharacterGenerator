@@ -10,7 +10,7 @@ namespace DAL.Weapon
 {
     public class WeaponRepository : IWeaponRepository
     {
-        private readonly MongoClient client = new MongoClient("mongodb://localhost:27017");
+        private readonly MongoClient client = new MongoClient("mongodb://tiamus-mongodb.southcentralus.cloudapp.azure.com");
         private readonly IMongoCollection<Weapon> collection;
 
         public WeaponRepository()

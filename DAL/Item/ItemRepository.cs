@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using Common;
 using Core.Item;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -10,13 +12,16 @@ namespace DAL.Item
 {
     public class ItemRepository : IItemRepository
     {
-        private readonly MongoClient client = new MongoClient("mongodb://localhost:27017");
         private readonly IMongoCollection<Item> collection;
 
         public ItemRepository()
         {
-            var database = client.GetDatabase("CharacterGenerator");
+            var sting = ApplicationConfiguration.MongoConnectionString;
+
+            var client = new MongoClient(ApplicationConfiguration.MongoConnectionString);
+            var database = client.GetDatabase("pathfinder");
             collection = database.GetCollection<Item>("Items");
+            
         }
 
         public async Task<IEnumerable<Core.Item.Item>> GetItems()

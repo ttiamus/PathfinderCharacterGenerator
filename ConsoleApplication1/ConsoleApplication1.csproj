@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5423AE0B-30F9-430F-A38F-29DF85BDE0E6}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{3AB42ECE-F6B0-495F-A16B-D2CD0CBEACA1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <AssemblyName>ConsoleApplication1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,20 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MongoDB.Bson, Version=2.2.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Bson.2.2.3\lib\net45\MongoDB.Bson.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MongoDB.Driver, Version=2.2.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.2.2.3\lib\net45\MongoDB.Driver.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MongoDB.Driver.Core, Version=2.2.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MongoDB.Driver.Core.2.2.3\lib\net45\MongoDB.Driver.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,46 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Armor\ArmorMapper.cs" />
-    <Compile Include="Armor\Armor.cs" />
-    <Compile Include="Armor\ArmorRepository.cs" />
-    <Compile Include="Character\CharacterMapper.cs" />
-    <Compile Include="Character\Character.cs" />
-    <Compile Include="Character\CharacterRepository.cs" />
-    <Compile Include="Class\Class.cs" />
-    <Compile Include="Deity\Deity.cs" />
-    <Compile Include="Deity\DeityMapper.cs" />
-    <Compile Include="Deity\DeityRepository.cs" />
-    <Compile Include="Feat\Feat.cs" />
-    <Compile Include="Feat\FeatMapper.cs" />
-    <Compile Include="Feat\FeatRepository.cs" />
-    <Compile Include="Item\Item.cs" />
-    <Compile Include="Item\ItemMapper.cs" />
-    <Compile Include="Item\ItemRepository.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Race\Race.cs" />
-    <Compile Include="Race\RaceMapper.cs" />
-    <Compile Include="Race\RaceRepository.cs" />
-    <Compile Include="Weapon\Weapon.cs" />
-    <Compile Include="Weapon\WeaponMapper.cs" />
-    <Compile Include="Weapon\WeaponRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{c38107ed-e973-4692-8638-0c3db2d0ab58}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{e2672421-ddfa-4af1-9d8d-b65e5237077c}</Project>
       <Name>Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Spell\" />
-    <Folder Include="Trait\" />
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{5423ae0b-30f9-430f-a38f-29df85bde0e6}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

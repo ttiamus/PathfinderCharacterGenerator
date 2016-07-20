@@ -10,7 +10,7 @@ namespace DAL.Armor
 {
     public class ArmorRepository : IArmorRepository
     {
-        private readonly MongoClient client = new MongoClient("mongodb://localhost:27017");
+        private readonly MongoClient client = new MongoClient("mongodb://tiamus-mongodb.southcentralus.cloudapp.azure.com");
         private readonly IMongoCollection<Armor> collection; 
 
         public ArmorRepository()

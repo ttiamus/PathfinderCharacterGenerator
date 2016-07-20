@@ -8,5 +8,7 @@ namespace Core.Item
 {
     public interface IItemRepository
     {
+        Task<IEnumerable<Item>> GetItems();
+        Task InsertItem(Item item);
     }
 }

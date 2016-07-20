@@ -10,7 +10,7 @@ namespace DAL.Feat
 {
     public class FeatRepository : IFeatRepository
     {
-        private readonly MongoClient client = new MongoClient("mongodb://localhost:27017");
+        private readonly MongoClient client = new MongoClient("mongodb://tiamus-mongodb.southcentralus.cloudapp.azure.com");
         IMongoCollection<Feat> collection;
 
         public FeatRepository()
