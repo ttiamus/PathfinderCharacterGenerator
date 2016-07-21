@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Core.Item;
+using Core.Items;
 
 namespace API.Controllers
 {
@@ -21,30 +21,67 @@ namespace API.Controllers
         [Route("api/items")]
         public async Task<IHttpActionResult> Get()
         {
-            return Ok( await itemService.GetItems());
+            var result = await itemService.GetItems();
+            var items = result.ToList();        //To keep from enumerating multiple times 
+
+            if (items.Any())
+            {
+                return Ok(items);
+            }
+
+            return NotFound();
         }
 
         [Route("api/items/{id}")]
-        public string Get(int id)
+        public async Task<IHttpActionResult> Get(string id)
         {
-            return "value";
+            var item = await itemService.GetItem(id);
+
+            if (item != null)
+            {
+                return Ok(item);
+            }
+
+            return NotFound();
         }
 
         [Route("api/items")]
         public async Task<IHttpActionResult> Post(Item item)
         {
-            await itemService.InsertItem(item);
-            return Ok();
+            var success = await itemService.InsertItem(item);
+            if (!success)
+            {
+                return Ok();
+            }
+
+            return InternalServerError();
+        }
+
+        //update
+        [Route("api/items/")] 
+        public async Task<IHttpActionResult> Put(Item item)
+        {
+            var success = await itemService.UpdateItem(item);
+
+            if (success)
+            {
+                return Ok();
+            }
+
+            return BadRequest($"Could not find item with Id {item.Id}");
         }
 
         [Route("api/items/{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IHttpActionResult> Delete(string id)
         {
-        }
+            var success = await itemService.DeleteItem(id);
 
-        [Route("api/items/{id}")]
-        public void Delete(int id)
-        {
+            if (success)
+            {
+                return Ok();
+            }
+
+            return BadRequest($"Could not find item with Id {id}");
         }
     }
 }

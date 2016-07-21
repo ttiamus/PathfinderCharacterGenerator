@@ -1,18 +1,18 @@
 ﻿using Autofac;
-using Core.Armor;
-using Core.Character;
-using Core.Deity;
-using Core.Feat;
-using Core.Item;
-using Core.Race;
-using Core.Weapon;
-using DAL.Armor;
-using DAL.Character;
-using DAL.Deity;
-using DAL.Feat;
-using DAL.Item;
-using DAL.Race;
-using DAL.Weapon;
+using Core.Armors;
+using Core.Characters;
+using Core.Deites;
+using Core.Feats;
+using Core.Items;
+using Core.Races;
+using Core.Weapons;
+using DAL.Armors;
+using DAL.Characters;
+using DAL.Deities;
+using DAL.Feats;
+using DAL.Items;
+using DAL.Races;
+using DAL.Weapons;
 
 namespace DependencyResolver
 {

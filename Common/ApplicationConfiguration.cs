@@ -13,6 +13,8 @@ namespace Common
 
         private static string MongoPassword => ConfigurationManager.AppSettings["MongoPassword"];
 
-        public static string MongoConnectionString => string.Format(ConfigurationManager.AppSettings["MongoConnectionString"], MongoUserName, MongoPassword);
+        public static string PathfinderConnectionString => string.Format(ConfigurationManager.AppSettings["PathfinderConnectionString"], MongoUserName, MongoPassword);
+
+        public static string CharacterConnectionString => string.Format(ConfigurationManager.AppSettings["CharacterConnectionString"], MongoUserName, MongoPassword);
     }
 }
