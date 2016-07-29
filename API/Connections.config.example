@@ -1,8 +1,6 @@
-﻿<configuration>
-  <appSettings>
-    <add key="PathfinderConnectionString" value="mongodb://{0}:{1}@yourMongoServer"/>
-    <add key="CharacterConnectionString" value="mongodb://{0}:{1}@yourMongoServer"/>
-    <add key="MongoUsername" value="yourUsername"/>
-    <add key="MongoPassword" value="yourPassword"/>
-  </appSettings>
-</configuration>
+﻿<appSettings>
+  <add key="PathfinderConnectionString" value="mongodb://{0}:{1}@yourMongoServer"/>
+  <add key="CharacterConnectionString" value="mongodb://{0}:{1}@yourMongoServer"/>
+  <add key="MongoUsername" value="yourUsername"/>
+  <add key="MongoPassword" value="yourPassword"/>
+</appSettings>
