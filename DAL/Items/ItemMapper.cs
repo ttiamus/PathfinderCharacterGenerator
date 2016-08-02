@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Core.Items.UpdateItem;
+using MongoDB.Bson;
 
 namespace DAL.Items
 {
@@ -8,7 +9,7 @@ namespace DAL.Items
         {
             return new Core.Items.Item()
             {
-                Id = dal.Id.ToString(),
+                //Id = dal.Id.ToString(),
                 Cost = dal.Cost,
                 Weight = dal.Weight,
                 Name = dal.Name
@@ -24,12 +25,23 @@ namespace DAL.Items
                 Name = core.Name
             };
 
-            if (!string.IsNullOrWhiteSpace(core.Id))
+           /* if (!string.IsNullOrWhiteSpace(core.Id))
             {
                 item.Id = ObjectId.Parse(core.Id);
-            }
+            }*/
 
             return item;
+        }
+
+        public static Item ToItem(this UpdateItemRequest item)
+        {
+            return new Item()
+            {
+                Id = ObjectId.Parse(item.Id),
+                Name = item.Name,
+                Cost = item.Cost,
+                Weight = item.Weight
+            };
         }
     }
 }
