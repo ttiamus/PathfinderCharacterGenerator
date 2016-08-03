@@ -22,13 +22,13 @@ namespace Core.Items.GetItem
             return await Task.Run(() => !string.IsNullOrWhiteSpace(item.Id));
         }
 
-        public async Task<QueryResult<GetItemResponse>> Execute(GetItemRequest item)
+        public async Task<Result<GetItemResponse>> Execute(GetItemRequest item)
         {
             if (await Validate(item))
             {
                 return await repo.SaveChanges(item);
             }
-            return await Task.Run(() => new QueryResult<GetItemResponse>("Invalid Item"));
+            return await Task.Run(() => new Result<GetItemResponse>("Invalid Item"));
         }
     }
 }

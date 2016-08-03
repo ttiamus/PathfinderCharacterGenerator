@@ -9,6 +9,6 @@ namespace Common.Interfaces
 {
     public interface ICommandRepository<in T>
     {
-        Task<CommandResult> SaveChanges(T request);
+        Task<Result> SaveChanges(T request);
     }
 }

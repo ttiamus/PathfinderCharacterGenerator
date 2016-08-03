@@ -23,11 +23,11 @@ namespace Core.Items.UpdateItem
             collection = database.GetCollection<Item>("Items");
         }
 
-        public async Task<CommandResult> SaveChanges(UpdateItemRequest request)
+        public async Task<Result> SaveChanges(UpdateItemRequest request)
         {
             var item = request.ToItem();
             await collection.ReplaceOneAsync(x => x.Id == item.Id, item);
-            return await Task.Run(() => new CommandResult());
+            return await Task.Run(() => new Result());
         }
     }
 }

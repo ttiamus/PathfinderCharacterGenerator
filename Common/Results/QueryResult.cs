@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Results
 {
-    public class QueryResult<T>
+    public class Result<T>
     {
         public T Data { get; set; }
 
@@ -16,18 +16,18 @@ namespace Common.Results
         //Messages have a string with a type like info or exception
         public List<string> Messages { get; set; }
 
-        public QueryResult(T data)
+        public Result(T data)
         {
             this.Data = data;
             this.Success = true;
         }
 
-        public QueryResult(string message)
+        public Result(string message)
         {
             this.Messages = new List<string> {message};
         } 
 
-        public QueryResult(List<string> messages)
+        public Result(List<string> messages)
         {
             this.Messages = messages;
             this.Success = false;

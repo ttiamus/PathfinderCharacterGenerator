@@ -22,13 +22,13 @@ namespace Core.Items.GetItems
             return await Task.Run(() => true);
         }
 
-        public async Task<QueryResult<GetItemsResponse>> Execute(GetItemsRequest item)
+        public async Task<Result<GetItemsResponse>> Execute(GetItemsRequest item)
         {
             if (await Validate(item))
             {
                 return await repo.SaveChanges(item);
             }
-            return await Task.Run(() => new QueryResult<GetItemsResponse>("Invalid Item"));
+            return await Task.Run(() => new Result<GetItemsResponse>("Invalid Item"));
         }
     }
 }

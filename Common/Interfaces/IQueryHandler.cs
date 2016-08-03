@@ -10,6 +10,6 @@ namespace Common.Interfaces
     public interface IQueryHandler<in T, TU>
     {
         Task<bool> Validate(T request);
-        Task<QueryResult<TU>> Execute(T request);
+        Task<Result<TU>> Execute(T request);
     }
 }

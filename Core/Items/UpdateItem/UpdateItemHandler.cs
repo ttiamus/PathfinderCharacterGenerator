@@ -27,14 +27,14 @@ namespace Core.Items.UpdateItem
             //Will have to change to nullable decimal if I want to check them.
         }
 
-        public async Task<CommandResult> Execute(UpdateItemRequest item)
+        public async Task<Result> Execute(UpdateItemRequest item)
         {
             if (await Validate(item))
             {
                 return await repo.SaveChanges(item);
             }
 
-            return await Task.Run(() => new CommandResult("Invalid item"));
+            return await Task.Run(() => new Result("Invalid item"));
         }
     }
 }

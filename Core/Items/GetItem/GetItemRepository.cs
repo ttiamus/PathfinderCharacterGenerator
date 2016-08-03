@@ -23,11 +23,11 @@ namespace Core.Items.GetItem
             collection = database.GetCollection<Item>("Items");
         }
 
-        public async Task<QueryResult<GetItemResponse>> SaveChanges(GetItemRequest request)
+        public async Task<Result<GetItemResponse>> SaveChanges(GetItemRequest request)
         {
             var result = await collection.Find(x => x.Id.Equals(ObjectId.Parse(request.Id))).FirstOrDefaultAsync();
             var item = result.ToItemResponse();
-            return await Task.Run(() => new QueryResult<GetItemResponse>(item));
+            return await Task.Run(() => new Result<GetItemResponse>(item));
         }
     }
 }

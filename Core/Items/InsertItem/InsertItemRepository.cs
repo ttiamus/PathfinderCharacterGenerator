@@ -21,10 +21,10 @@ namespace Core.Items.InsertItem
             collection = database.GetCollection<InsertItemRequest>("Items");
         }
 
-        public async Task<CommandResult> SaveChanges(InsertItemRequest item)
+        public async Task<Result> SaveChanges(InsertItemRequest item)
         {
             await collection.InsertOneAsync(item);
-            return new CommandResult();
+            return new Result();
         }
     }
 }

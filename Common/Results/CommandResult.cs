@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Results
 {
-    public class CommandResult
+    public class Result
     {
         public bool Success { get; set; }
 
@@ -14,18 +14,18 @@ namespace Common.Results
         //Messages have a string with a type like info or exception
         public List<string> Messages { get; set; }
 
-        public CommandResult()
+        public Result()
         {
             Success = true;
             this.Messages = new List<string>();
         }
 
-        public CommandResult(string message)
+        public Result(string message)
         {
             this.Messages = new List<string> {message};
         }
 
-        public CommandResult(List<string> messages)
+        public Result(List<string> messages)
         {
             this.Messages = messages;
             this.Success = false;

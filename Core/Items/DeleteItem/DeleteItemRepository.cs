@@ -23,10 +23,10 @@ namespace Core.Items.DeleteItem
             collection = database.GetCollection<Item>("Items");
         }
 
-        public async Task<CommandResult> SaveChanges(DeleteItemRequest request)
+        public async Task<Result> SaveChanges(DeleteItemRequest request)
         {
             await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)));
-            return await Task.Run(() => new CommandResult());
+            return await Task.Run(() => new Result());
         }
     }
 }
