@@ -67,8 +67,8 @@ namespace API.Controllers
             {
                 return Ok();
             }
-
-            return BadRequest($"Could not find item with Id {item.Id}");
+            return BadRequest();
+            //return BadRequest($"Could not find item with Id {item.Id}");
         }
 
         [Route("api/items/{id}")]

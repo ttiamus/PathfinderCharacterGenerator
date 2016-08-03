@@ -30,6 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=2.2.3.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.2.3\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.2.3.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.2.3\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.2.3.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.2.3\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,10 +73,28 @@
     <Compile Include="Feats\FeatService.cs" />
     <Compile Include="Feats\IFeatRepository.cs" />
     <Compile Include="Feats\IFeatService.cs" />
+    <Compile Include="Items\DeleteItem\DeleteItemHandler.cs" />
+    <Compile Include="Items\DeleteItem\DeleteItemRepository.cs" />
+    <Compile Include="Items\DeleteItem\DeleteItemRequest.cs" />
+    <Compile Include="Items\GetItems\GetItemsHandler.cs" />
+    <Compile Include="Items\GetItems\GetItemsRepository.cs" />
+    <Compile Include="Items\GetItems\GetItemsRequest.cs" />
+    <Compile Include="Items\GetItems\GetItemsResponse.cs" />
+    <Compile Include="Items\GetItem\GetItemHandler.cs" />
+    <Compile Include="Items\GetItem\GetItemRepository.cs" />
+    <Compile Include="Items\GetItem\GetItemRequest.cs" />
+    <Compile Include="Items\GetItem\GetItemResponse.cs" />
     <Compile Include="Items\IItemRepository.cs" />
     <Compile Include="Items\IItemService.cs" />
+    <Compile Include="Items\InsertItem\InsertItemHandler.cs" />
+    <Compile Include="Items\InsertItem\InsertItemRepository.cs" />
+    <Compile Include="Items\InsertItem\InsertItemRequest.cs" />
     <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemMapper.cs" />
     <Compile Include="Items\ItemService.cs" />
+    <Compile Include="Items\UpdateItem\UpdateItemHandler.cs" />
+    <Compile Include="Items\UpdateItem\UpdateItemRepository.cs" />
+    <Compile Include="Items\UpdateItem\UpdateItemRequest.cs" />
     <Compile Include="Races\IRaceRepository.cs" />
     <Compile Include="Races\IRaceService.cs" />
     <Compile Include="Races\Race.cs" />
@@ -79,6 +109,15 @@
   <ItemGroup>
     <Folder Include="Spells\" />
     <Folder Include="Traits\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c38107ed-e973-4692-8638-0c3db2d0ab58}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

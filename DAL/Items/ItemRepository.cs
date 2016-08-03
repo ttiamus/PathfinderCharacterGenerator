@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
@@ -38,7 +39,8 @@ namespace DAL.Items
 
         public async Task UpdateItem(Core.Items.Item item)
         {
-            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(item.Id)), item.ToDal());
+            throw new NotImplementedException();
+            //await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(item.Id)), item.ToDal());
         }
 
         public async Task DeleteItem(string id)
