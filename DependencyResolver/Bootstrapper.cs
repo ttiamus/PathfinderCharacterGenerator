@@ -50,20 +50,22 @@ namespace DependencyResolver
             Builder.RegisterType<ItemService>().As<IItemService>().InstancePerRequest();
             //Builder.RegisterType<ItemRepository>().As<IItemRepository>().InstancePerRequest();
 
-            Builder.RegisterType<ICommandHandler<DeleteItemHandler>>().As<DeleteItemHandler>().InstancePerRequest();
-            Builder.RegisterType<ICommandRepository<DeleteItemRepository>>().As<DeleteItemRepository>().InstancePerRequest();
+            //Builder.RegisterGeneric(typeof (DeleteItemHandler)).As(typeof (ICommandHandler<>));
 
-            Builder.RegisterType<IQueryHandler<GetItemHandler, Result<GetItemResponse>>>().As<GetItemHandler>().InstancePerRequest();
-            Builder.RegisterType<IQueryRepository<GetItemRepository, GetItemResponse>>().As<GetItemRepository>().InstancePerRequest();
+            Builder.RegisterType<DeleteItemHandler>().As(typeof(ICommandHandler<DeleteItemRequest>)).InstancePerRequest();
+            Builder.RegisterType<DeleteItemRepository>().As(typeof(ICommandRepository<DeleteItemRequest>)).InstancePerRequest();
 
-            Builder.RegisterType<IQueryHandler<GetItemsHandler, Result<GetItemResponse>>>().As<GetItemsHandler>().InstancePerRequest();
-            Builder.RegisterType<IQueryRepository<GetItemsRepository, GetItemResponse>>().As<GetItemsRepository>().InstancePerRequest();
+            Builder.RegisterType<IQueryHandler<GetItemRequest, Result<GetItemResponse>>>().As<GetItemHandler>().InstancePerRequest();
+            Builder.RegisterType<IQueryRepository<GetItemRequest, GetItemResponse>>().As<GetItemRepository>().InstancePerRequest();
 
-            Builder.RegisterType<IQueryHandler<InsertItemHandler, GetItemsRequest>>().As<InsertItemHandler>().InstancePerRequest();
-            Builder.RegisterType<IQueryRepository<InsertItemRepository, GetItemsRequest>>().As<InsertItemRepository>().InstancePerRequest();
+            Builder.RegisterType<IQueryHandler<GetItemsRequest, Result<GetItemResponse>>>().As<GetItemsHandler>().InstancePerRequest();
+            Builder.RegisterType<IQueryRepository<GetItemsRequest, GetItemResponse>>().As<GetItemsRepository>().InstancePerRequest();
 
-            Builder.RegisterType<IQueryHandler<UpdateItemHandler, GetItemsRequest>>().As<UpdateItemHandler>().InstancePerRequest();
-            Builder.RegisterType<IQueryRepository<UpdateItemRepository, GetItemsRequest>>().As<UpdateItemRepository>().InstancePerRequest();
+            Builder.RegisterType<ICommandHandler<InsertItemRequest>>().As<InsertItemHandler>().InstancePerRequest();
+            Builder.RegisterType<ICommandRepository<InsertItemRequest>>().As<InsertItemRepository>().InstancePerRequest();
+
+            Builder.RegisterType<ICommandHandler<UpdateItemRequest>>().As<UpdateItemHandler>().InstancePerRequest();
+            Builder.RegisterType<ICommandRepository<UpdateItemRequest>>().As<UpdateItemRepository>().InstancePerRequest();
 
             //Race
             Builder.RegisterType<RaceService>().As<IRaceService>().InstancePerRequest();
