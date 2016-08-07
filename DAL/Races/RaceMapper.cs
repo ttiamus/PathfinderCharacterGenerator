@@ -1,35 +1,44 @@
-﻿using MongoDB.Bson;
+﻿using Core.Races.Requests;
+using Core.Races.Responses;
+using MongoDB.Bson;
 
 namespace DAL.Races
 {
     public static class RaceMapper
     {
-        public static Core.Races.Race ToCore(this Race dal)
+        public static RaceResponse ToRaceResponse(this Race race)
         {
-            return new Core.Races.Race()
+            return new RaceResponse()
             {
-                Id = dal.Id.ToString(),
-                Description = dal.Description,
-                Size = dal.Size,
-                Speed = dal.Speed
+                Id = race.Id.ToString(),
+                Name = race.Name,
+                Description = race.Description,
+                Size = race.Size,
+                Speed = race.Speed
             };
         }
 
-        public static Race ToDal(this Core.Races.Race core)
+        public static Race ToRace(this InsertRaceRequest request)
         {
-            var race = new Race()
+            return new Race()
             {
-                Description = core.Description,
-                Size = core.Size,
-                Speed = core.Speed
+                Name = request.Name,
+                Description = request.Description,
+                Size = request.Size,
+                Speed = request.Speed
             };
+        }
 
-            if (!string.IsNullOrWhiteSpace(core.Id))
+        public static Race ToRace(this UpdateRaceRequest request)
+        {
+            return new Race()
             {
-                race.Id = ObjectId.Parse(core.Id);
-            }
-
-            return race;
+                Id = ObjectId.Parse(request.Id),
+                Name = request.Name,
+                Description = request.Description,
+                Size = request.Size,
+                Speed = request.Speed
+            };
         }
     }
 }

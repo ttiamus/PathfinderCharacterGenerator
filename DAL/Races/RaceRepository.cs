@@ -2,7 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Results;
 using Core.Races;
+using Core.Races.Requests;
+using Core.Races.Responses;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -19,31 +22,35 @@ namespace DAL.Races
             collection = database.GetCollection<Race>("Races");
         }
 
-        public async Task<IEnumerable<Core.Races.Race>> GetRaces()
+        public async Task<Result<IEnumerable<RaceResponse>>> GetRaces()
         {
-            var races = await collection.Find(x => true).ToListAsync();
-            return races.Select(race => race.ToCore());
+            var result = await collection.Find(x => true).ToListAsync();
+            var races = result.Select(race => race.ToRaceResponse());
+            return await Task.Run(() => new Result<IEnumerable<RaceResponse>>(races));
         }
 
-        public async Task<Core.Races.Race> GetRace(string id)
+        public async Task<Result<RaceResponse>> GetRace(GetRaceRequest request)
         {
-            var race = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
-            return race.ToCore();
+            var race = await collection.Find(x => x.Id.Equals(ObjectId.Parse(request.Id))).FirstOrDefaultAsync();
+            return await Task.Run(() => new Result<RaceResponse>(race.ToRaceResponse()));
         }
 
-        public async Task InsertRace(Core.Races.Race race)
+        public async Task<Result> InsertRace(InsertRaceRequest request)
         {
-            await collection.InsertOneAsync(race.ToDal());
+            await collection.InsertOneAsync(request.ToRace());
+            return await Task.Run(() => new Result());
         }
 
-        public async Task UpdateRace(Core.Races.Race race)
+        public async Task<Result> UpdateRace(UpdateRaceRequest request)
         {
-            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(race.Id)), race.ToDal());
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)), request.ToRace());
+            return await Task.Run(() => new Result());
         }
 
-        public async Task DeleteRace(string id)
+        public async Task<Result> DeleteRace(DeleteRaceRequest request)
         {
-            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)));
+            return await Task.Run(() => new Result());
         }
     }
 }

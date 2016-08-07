@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
 using Core.Items;
-using Core.Items.DeleteItem;
-using Core.Items.GetItem;
-using Core.Items.GetItems;
-using Core.Items.InsertItem;
-using Core.Items.UpdateItem;
+using Core.Items.Requests;
 
 namespace API.Controllers
 {
@@ -23,11 +14,11 @@ namespace API.Controllers
             this.itemService = itemService;
         }
 
+        [HttpGet]
         [Route("api/items")]
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> GetItems()
         {
-            var result = await itemService.GetItems(new GetItemsRequest());
-            
+            var result = await itemService.GetItems();
 
             if (result.Success)
             {
@@ -37,8 +28,9 @@ namespace API.Controllers
             return NotFound();
         }
 
+        [HttpGet]
         [Route("api/items/{id}")]
-        public async Task<IHttpActionResult> Get(GetItemRequest request)
+        public async Task<IHttpActionResult> GetItem(GetItemRequest request)
         {
             var result = await itemService.GetItem(request);
 
@@ -50,8 +42,9 @@ namespace API.Controllers
             return NotFound();
         }
 
+        [HttpPost]
         [Route("api/items")]
-        public async Task<IHttpActionResult> Post(InsertItemRequest request)
+        public async Task<IHttpActionResult> InsertItem(InsertItemRequest request)
         {
             var result = await itemService.InsertItem(request);
             if (!result.Success)
@@ -62,9 +55,9 @@ namespace API.Controllers
             return InternalServerError();
         }
 
-        //update
+        [HttpPut]
         [Route("api/items/")] 
-        public async Task<IHttpActionResult> Put(UpdateItemRequest request)
+        public async Task<IHttpActionResult> UpdateItem(UpdateItemRequest request)
         {
             var result = await itemService.UpdateItem(request);
 
@@ -76,8 +69,9 @@ namespace API.Controllers
             //return BadRequest($"Could not find item with Id {item.Id}");
         }
 
+        [HttpDelete]
         [Route("api/items/{id}")]
-        public async Task<IHttpActionResult> Delete(DeleteItemRequest request)
+        public async Task<IHttpActionResult> DeleteItem(DeleteItemRequest request)
         {
             var result = await itemService.DeleteItem(request);
 

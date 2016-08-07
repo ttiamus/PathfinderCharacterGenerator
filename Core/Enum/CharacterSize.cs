@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Items.DeleteItem
+namespace Core.Enum
 {
-    public class DeleteItemRequest
+    public enum CharacterSize
     {
-        public string Id { get; set; }
     }
 }

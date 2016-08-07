@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Results
 {
@@ -12,9 +9,9 @@ namespace Common.Results
 
         public bool Success { get; set; }
 
-        //Maybe this will be a messages class instead of string
-        //Messages have a string with a type like info or exception
         public List<string> Messages { get; set; }
+
+        public List<Exception> Exceptions { get; set; }
 
         public Result(T data)
         {
@@ -24,13 +21,23 @@ namespace Common.Results
 
         public Result(string message)
         {
-            this.Messages = new List<string> {message};
-        } 
+            this.Success = false;
+            this.Messages = new List<string> { message };
+            this.Exceptions = new List<Exception>();
+        }
 
         public Result(List<string> messages)
         {
-            this.Messages = messages;
             this.Success = false;
-        } 
+            this.Messages = messages;
+            this.Exceptions = new List<Exception>();
+        }
+
+        public Result(Exception exception)
+        {
+            this.Success = false;
+            this.Messages = new List<string>();
+            this.Exceptions = new List<Exception> { exception };
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Classes;
-using Core.Races;
+using Core.Races.Responses;
 
 namespace Core.Characters
 {
@@ -8,14 +8,14 @@ namespace Core.Characters
     {
         public string Id { get; set; }
 
-        public Race Race { get; set; }
+        public RaceResponse Race { get; set; }
         public List<Class> Classes { get; set; }
         public Stats Stats { get; set; }
         public Saves Saves { get; set; }
 
         public Character()
         {
-            this.Race = new Race();
+            this.Race = new RaceResponse();
             this.Classes = new List<Class>();
 
             this.Stats = new Stats

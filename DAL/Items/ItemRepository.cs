@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Results;
 using Core.Items;
+using Core.Items.Requests;
+using Core.Items.Resposnes;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -20,32 +22,35 @@ namespace DAL.Items
             collection = database.GetCollection<Item>("Items");
         }
 
-        public async Task<IEnumerable<Core.Items.Item>> GetItems()
+        public async Task<Result<IEnumerable<ItemResponse>>> GetItems()
         {
-            var items = await collection.Find(x => true).ToListAsync();
-            return items.Select(item => item.ToCore());
+            var result = await collection.Find(x => true).ToListAsync();
+            var items = result.Select(request => request.ToItemResponse());
+            return new Result<IEnumerable<ItemResponse>>(items);
         }
 
-        public async Task<Core.Items.Item> GetItem(string id)
+        public async Task<Result<ItemResponse>> GetItem(GetItemRequest request)
         {
-            var item = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
-            return item.ToCore();
+            var item = await collection.Find(x => x.Id.Equals(ObjectId.Parse(request.Id))).FirstOrDefaultAsync();
+            return new Result<ItemResponse>(item.ToItemResponse());
         }
 
-        public async Task InsertItem(Core.Items.Item item)
+        public async Task<Result> InsertItem(InsertItemRequest request)
         {
-            await collection.InsertOneAsync(item.ToDal());
+            await collection.InsertOneAsync(request.ToItem());
+            return new Result();
         }
 
-        public async Task UpdateItem(Core.Items.Item item)
+        public async Task<Result> UpdateItem(UpdateItemRequest request)
         {
-            throw new NotImplementedException();
-            //await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(item.Id)), item.ToDal());
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)), request.ToItem());
+            return new Result();
         }
 
-        public async Task DeleteItem(string id)
+        public async Task<Result> DeleteItem(DeleteItemRequest request)
         {
-            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)));
+            return new Result();
         }
     }
 }

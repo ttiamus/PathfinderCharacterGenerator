@@ -1,5 +1,5 @@
 ﻿using Core.Alignments;
-using Core.Weapons;
+using Core.Weapons.Responses;
 
 namespace Core.Deites
 {
@@ -9,6 +9,6 @@ namespace Core.Deites
         public string Description { get; set; }
         //List<DomainOption> Domains { get; set }
         public Alignment Alignment { get; set; }
-        public Weapon FavoredWeapon { get; set; }
+        public WeaponResponse FavoredWeapon { get; set; }
     }
 }

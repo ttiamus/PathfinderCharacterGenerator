@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using Core.Items;
 using Core.Weapons;
+using Core.Weapons.Requests;
+using Core.Weapons.Responses;
 
 namespace API.Controllers
 {
@@ -19,38 +15,40 @@ namespace API.Controllers
             this.weaponService = weaponService;
         }
 
+        [HttpGet]
         [Route("api/items/weapons")]
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> GetWeapons()
         {
             var result = await weaponService.GetWeapons();
-            var weapons = result.ToList();        //To keep from enumerating multiple times 
 
-            if (weapons.Any())
+            if (result.Success)
             {
-                return Ok(weapons);
+                return Ok(result);
             }
 
             return NotFound();
         }
 
+        [HttpGet]
         [Route("api/items/weapons/{id}")]
-        public async Task<IHttpActionResult> Get(string id)
+        public async Task<IHttpActionResult> GetWeapon(GetWeaponRequest request)
         {
-            var item = await weaponService.GetWeapon(id);
+            var result = await weaponService.GetWeapon(request);
 
-            if (item != null)
+            if (result.Success)
             {
-                return Ok(item);
+                return Ok(result);
             }
 
             return NotFound();
         }
 
+        [HttpPost]
         [Route("api/items/weapons")]
-        public async Task<IHttpActionResult> Post(Weapon weapon)
+        public async Task<IHttpActionResult> InsertWeapon(InsertWeaponRequest request)
         {
-            var success = await weaponService.InsertWeapon(weapon);
-            if (!success)
+            var result = await weaponService.InsertWeapon(request);
+            if (result.Success)
             {
                 return Ok();
             }
@@ -58,30 +56,32 @@ namespace API.Controllers
             return InternalServerError();
         }
 
+        [HttpPut]
         [Route("api/items/weapons/{id}")]
-        public async Task<IHttpActionResult> Put(Weapon weapon)
+        public async Task<IHttpActionResult> UpdateWeapon(UpdateWeaponRequest request)
         {
-            var success = await weaponService.UpdateWeapon(weapon);
+            var result = await weaponService.UpdateWeapon(request);
 
-            if (success)
+            if (result.Success)
             {
                 return Ok();
             }
 
-            return BadRequest($"Could not find weapon with Id {weapon.Id}");
+            return BadRequest($"Could not find weapon with Id {request.Id}");
         }
 
+        [HttpDelete]
         [Route("api/items/weapons/{id}")]
-        public async Task<IHttpActionResult> Delete(string id)
+        public async Task<IHttpActionResult> DeleteWeapon(DeleteWeaponRequest request)
         {
-            var success = await weaponService.DeleteWeapon(id);
+            var result = await weaponService.DeleteWeapon(request);
 
-            if (success)
+            if (result.Success)
             {
                 return Ok();
             }
 
-            return BadRequest($"Could not find weapon with Id {id}");
+            return BadRequest($"Could not find weapon with Id {request.Id}");
         }
     }
 }

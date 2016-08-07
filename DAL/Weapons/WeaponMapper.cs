@@ -1,48 +1,65 @@
-﻿using MongoDB.Bson;
+﻿using Core.Weapons.Requests;
+using Core.Weapons.Responses;
+using MongoDB.Bson;
 
 namespace DAL.Weapons
 {
     public static class WeaponMapper
     {
-        public static Core.Weapons.Weapon ToCore(this Weapon dal)
+        public static WeaponResponse ToWeaponResponse(this Weapon weapon)
         {
-            return new Core.Weapons.Weapon()
+            return new WeaponResponse()
             {
-                Id = dal.Id.ToString(),
-                Cost = dal.Cost,
-                CriticalMultiplier = dal.CriticalMultiplier,
-                CriticalThreatRange = dal.CriticalThreatRange,
-                DamageDice = dal.DamageDice,
-                DamageType = dal.DamageType,
-                NumberOfDice = dal.NumberOfDice,
-                Properties = dal.Properties,
-                Range = dal.Range,
-                Weight = dal.Weight
+                Id = weapon.Id.ToString(),
+                Name = weapon.Name,
+                WeaponType = weapon.WeaponType,
+                Cost = weapon.Cost,
+                CriticalMultiplier = weapon.CriticalMultiplier,
+                CriticalThreatRange = weapon.CriticalThreatRange,
+                DamageDice = weapon.DamageDice,
+                DamageType = weapon.DamageType,
+                NumberOfDice = weapon.NumberOfDice,
+                Properties = weapon.Properties,
+                Range = weapon.Range,
+                Weight = weapon.Weight
             };
         }
 
-        public static Weapon ToDal(this Core.Weapons.Weapon core)
+        public static Weapon ToWeapon(this InsertWeaponRequest request)
         {
-            var weapon = new Weapon()
+            return new Weapon()
             {
-                Cost = core.Cost,
-                CriticalMultiplier = core.CriticalMultiplier,
-                CriticalThreatRange = core.CriticalThreatRange,
-                DamageDice = core.DamageDice,
-                DamageType = core.DamageType,
-                NumberOfDice = core.NumberOfDice,
-                Properties = core.Properties,
-                Range = core.Range,
-                Weight = core.Weight
+                Name = request.Name,
+                WeaponType = request.WeaponType,
+                Cost = request.Cost,
+                CriticalMultiplier = request.CriticalMultiplier,
+                CriticalThreatRange = request.CriticalThreatRange,
+                DamageDice = request.DamageDice,
+                DamageType = request.DamageType,
+                NumberOfDice = request.NumberOfDice,
+                Properties = request.Properties,
+                Range = request.Range,
+                Weight = request.Weight
             };
+        }
 
-
-            if (!string.IsNullOrWhiteSpace(core.Id))
+        public static Weapon ToWeapon(this UpdateWeaponRequest request)
+        {
+            return new Weapon()
             {
-                weapon.Id = ObjectId.Parse(core.Id);
-            }
-
-            return weapon;
+                Id = ObjectId.Parse(request.Id),
+                Name = request.Name,
+                WeaponType = request.WeaponType,
+                Cost = request.Cost,
+                CriticalMultiplier = request.CriticalMultiplier,
+                CriticalThreatRange = request.CriticalThreatRange,
+                DamageDice = request.DamageDice,
+                DamageType = request.DamageType,
+                NumberOfDice = request.NumberOfDice,
+                Properties = request.Properties,
+                Range = request.Range,
+                Weight = request.Weight
+            };
         }
     }
 }

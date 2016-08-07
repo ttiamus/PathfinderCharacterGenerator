@@ -2,7 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Results;
 using Core.Weapons;
+using Core.Weapons.Requests;
+using Core.Weapons.Responses;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -19,31 +22,35 @@ namespace DAL.Weapons
             collection = database.GetCollection<Weapon>("Weapons");
         }
 
-        public async Task<IEnumerable<Core.Weapons.Weapon>> GetWeapons()
+        public async Task<Result<IEnumerable<WeaponResponse>>> GetWeapons()
         {
-            var weapons = await collection.Find(x => true).ToListAsync();
-            return weapons.Select(weapon => weapon.ToCore());
+            var result = await collection.Find(x => true).ToListAsync();
+            var weapons = result.Select(weapon => weapon.ToWeaponResponse());
+            return await Task.Run(() => new Result<IEnumerable<WeaponResponse>>(weapons));
         }
 
-        public async Task<Core.Weapons.Weapon> GetWeapon(string id)
+        public async Task<Result<WeaponResponse>> GetWeapon(GetWeaponRequest request)
         {
-            var weapon = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
-            return weapon.ToCore();
+            var weapon = await collection.Find(x => x.Id.Equals(ObjectId.Parse(request.Id))).FirstOrDefaultAsync();
+            return await Task.Run(() => new Result<WeaponResponse>(weapon.ToWeaponResponse()));
         }
 
-        public async Task InsertWeapon(Core.Weapons.Weapon weapon)
+        public async Task<Result> InsertWeapon(InsertWeaponRequest request)
         {
-            await collection.InsertOneAsync(weapon.ToDal());
+            await collection.InsertOneAsync(request.ToWeapon());
+            return await Task.Run(() => new Result());
         }
 
-        public async Task UpdateWeapon(Core.Weapons.Weapon weapon)
+        public async Task<Result> UpdateWeapon(UpdateWeaponRequest request)
         {
-            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(weapon.Id)), weapon.ToDal());
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)), request.ToWeapon());
+            return await Task.Run(() => new Result());
         }
 
-        public async Task DeleteWeapon(string id)
+        public async Task<Result> DeleteWeapon(DeleteWeaponRequest request)
         {
-            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)));
+            return await Task.Run(() => new Result());
         }
     }
 }

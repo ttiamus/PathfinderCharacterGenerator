@@ -1,46 +1,43 @@
-﻿using Core.Items.UpdateItem;
+﻿using Core.Items.Requests;
+using Core.Items.Resposnes;
 using MongoDB.Bson;
 
 namespace DAL.Items
 {
     public static class ItemMapper
     {
-        public static Core.Items.Item ToCore(this Item dal)
+        public static ItemResponse ToItemResponse(this Item item)
         {
-            return new Core.Items.Item()
+            return new ItemResponse()
             {
-                //Id = dal.Id.ToString(),
-                Cost = dal.Cost,
-                Weight = dal.Weight,
-                Name = dal.Name
+                Id = item.Id.ToString(),
+                Name = item.Name,
+                Type = item.Type,
+                Cost = item.Cost,
+                Weight = item.Weight
             };
         }
 
-        public static Item ToDal(this Core.Items.Item core)
-        {
-            var item = new Item()
-            {
-                Cost = core.Cost,
-                Weight = core.Weight,
-                Name = core.Name
-            };
-
-           /* if (!string.IsNullOrWhiteSpace(core.Id))
-            {
-                item.Id = ObjectId.Parse(core.Id);
-            }*/
-
-            return item;
-        }
-
-        public static Item ToItem(this UpdateItemRequest item)
+        public static Item ToItem(this InsertItemRequest request)
         {
             return new Item()
             {
-                Id = ObjectId.Parse(item.Id),
-                Name = item.Name,
-                Cost = item.Cost,
-                Weight = item.Weight
+                Name = request.Name,
+                Type = request.Type,
+                Cost = request.Cost,
+                Weight = request.Weight
+            };
+        }
+
+        public static Item ToItem(this UpdateItemRequest request)
+        {
+            return new Item()
+            {
+                Id = ObjectId.Parse(request.Id),
+                Name = request.Name,
+                Type = request.Type,
+                Cost = request.Cost,
+                Weight = request.Weight
             };
         }
     }

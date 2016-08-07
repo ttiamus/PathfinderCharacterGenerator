@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Enum;
-using Core.Weapons.WeaponProperty;
+using Core.WeaponProperties;
 using MongoDB.Bson;
 
 namespace DAL.Weapons
@@ -8,6 +8,8 @@ namespace DAL.Weapons
     public class Weapon
     {
         public ObjectId Id { get; set; }
+        public string Name { get; set; }
+        public WeaponType WeaponType { get; set; }
         public int NumberOfDice { get; set; }
         public Dice DamageDice { get; set; }  
         public decimal Cost { get; set; }                               //in gold
@@ -15,7 +17,7 @@ namespace DAL.Weapons
         public int CriticalMultiplier { get; set; }
         public int Range { get; set; }                                  //in feet
         public decimal Weight { get; set; }                             //in lbs
-        public string DamageType { get; set; }
-        public IEnumerable<IWeaponProperty> Properties { get; set; }
+        public IEnumerable<WeaponDamageType> DamageType { get; set; }
+        public IEnumerable<WeaponProperty> Properties { get; set; }
     }
 }

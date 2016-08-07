@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Results;
+using Core.Races.Requests;
+using Core.Races.Responses;
 
 namespace Core.Races
 {
     public interface IRaceRepository
     {
-        Task<IEnumerable<Race>> GetRaces();
-        Task<Race> GetRace(string id);
-        Task InsertRace(Race race);
-        Task UpdateRace(Race race);
-        Task DeleteRace(string id);
+        Task<Result<IEnumerable<RaceResponse>>> GetRaces();
+        Task<Result<RaceResponse>> GetRace(GetRaceRequest request);
+        Task<Result> InsertRace(InsertRaceRequest request);
+        Task<Result> UpdateRace(UpdateRaceRequest request);
+        Task<Result> DeleteRace(DeleteRaceRequest request);
     }
 }

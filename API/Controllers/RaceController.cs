@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Http;
-using Core.Items;
 using Core.Races;
+using Core.Races.Requests;
 
 namespace API.Controllers
 {
@@ -19,38 +14,40 @@ namespace API.Controllers
             this.raceService = raceService;
         }
 
+        [HttpGet]
         [Route("api/races")]
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> GetRaces()
         {
             var result = await raceService.GetRaces();
-            var races = result.ToList();        //To keep from enumerating multiple times 
 
-            if (races.Any())
+            if (result.Success)
             {
-                return Ok(races);
+                return Ok(result);
             }
 
             return NotFound();
         }
 
+        [HttpGet]
         [Route("api/races/{id}")]
-        public async Task<IHttpActionResult> Get(string id)
+        public async Task<IHttpActionResult> GetRace(GetRaceRequest request)
         {
-            var item = await raceService.GetRace(id);
+            var result = await raceService.GetRace(request);
 
-            if (item != null)
+            if (result.Success)
             {
-                return Ok(item);
+                return Ok(result);
             }
 
             return NotFound();
         }
 
+        [HttpPost]
         [Route("api/races")]
-        public async Task<IHttpActionResult> Post(Race race)
+        public async Task<IHttpActionResult> InsertRace(InsertRaceRequest request)
         {
-            var success = await raceService.InsertRace(race);
-            if (!success)
+            var result = await raceService.InsertRace(request);
+            if (result.Success)
             {
                 return Ok();
             }
@@ -58,30 +55,32 @@ namespace API.Controllers
             return InternalServerError();
         }
 
+        [HttpPut]
         [Route("api/races/{id}")]
-        public async Task<IHttpActionResult> Put(Race race)
+        public async Task<IHttpActionResult> UpdateRace(UpdateRaceRequest request)
         {
-            var success = await raceService.UpdateRace(race);
+            var result = await raceService.UpdateRace(request);
 
-            if (success)
+            if (result.Success)
             {
                 return Ok();
             }
 
-            return BadRequest($"Could not find race with Id {race.Id}");
+            return BadRequest($"Could not find race with Id {request.Id}");
         }
 
+        [HttpDelete]
         [Route("api/races/{id}")]
-        public async Task<IHttpActionResult> Delete(string id)
+        public async Task<IHttpActionResult> DeleteRace(DeleteRaceRequest request)
         {
-            var success = await raceService.DeleteRace(id);
+            var result = await raceService.DeleteRace(request);
 
-            if (success)
+            if (result.Success)
             {
                 return Ok();
             }
 
-            return BadRequest($"Could not find race with Id {id}");
+            return BadRequest($"Could not find race with Id {request.Id}");
         }
     }
 }

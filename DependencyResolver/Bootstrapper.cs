@@ -1,16 +1,9 @@
 ﻿using Autofac;
-using Common.Interfaces;
-using Common.Results;
 using Core.Armors;
 using Core.Characters;
 using Core.Deites;
 using Core.Feats;
 using Core.Items;
-using Core.Items.DeleteItem;
-using Core.Items.GetItem;
-using Core.Items.GetItems;
-using Core.Items.InsertItem;
-using Core.Items.UpdateItem;
 using Core.Races;
 using Core.Weapons;
 using DAL.Armors;
@@ -48,24 +41,7 @@ namespace DependencyResolver
 
             //Item
             Builder.RegisterType<ItemService>().As<IItemService>().InstancePerRequest();
-            //Builder.RegisterType<ItemRepository>().As<IItemRepository>().InstancePerRequest();
-
-            //Builder.RegisterGeneric(typeof (DeleteItemHandler)).As(typeof (ICommandHandler<>));
-
-            Builder.RegisterType<DeleteItemHandler>().As(typeof(ICommandHandler<DeleteItemRequest>)).InstancePerRequest();
-            Builder.RegisterType<DeleteItemRepository>().As(typeof(ICommandRepository<DeleteItemRequest>)).InstancePerRequest();
-
-            Builder.RegisterType<IQueryHandler<GetItemRequest, Result<GetItemResponse>>>().As<GetItemHandler>().InstancePerRequest();
-            Builder.RegisterType<IQueryRepository<GetItemRequest, GetItemResponse>>().As<GetItemRepository>().InstancePerRequest();
-
-            Builder.RegisterType<IQueryHandler<GetItemsRequest, Result<GetItemResponse>>>().As<GetItemsHandler>().InstancePerRequest();
-            Builder.RegisterType<IQueryRepository<GetItemsRequest, GetItemResponse>>().As<GetItemsRepository>().InstancePerRequest();
-
-            Builder.RegisterType<ICommandHandler<InsertItemRequest>>().As<InsertItemHandler>().InstancePerRequest();
-            Builder.RegisterType<ICommandRepository<InsertItemRequest>>().As<InsertItemRepository>().InstancePerRequest();
-
-            Builder.RegisterType<ICommandHandler<UpdateItemRequest>>().As<UpdateItemHandler>().InstancePerRequest();
-            Builder.RegisterType<ICommandRepository<UpdateItemRequest>>().As<UpdateItemRepository>().InstancePerRequest();
+            Builder.RegisterType<ItemRepository>().As<IItemRepository>().InstancePerRequest();
 
             //Race
             Builder.RegisterType<RaceService>().As<IRaceService>().InstancePerRequest();

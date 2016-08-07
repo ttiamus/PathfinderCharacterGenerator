@@ -1,18 +1,17 @@
-﻿using DAL.Weapons;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 
 namespace DAL.Deities
 {
     public static class DeityMapper
     {
-        public static Core.Deites.Deity ToCore(this Deity dal)
+        /*public static Core.Deites.Deity ToCore(this Deity dal)
         {
             return new Core.Deites.Deity()
             {
                 Id = dal.Id.ToString(),
                 Alignment = dal.Alignment,
                 Description = dal.Description,
-                FavoredWeapon = dal.FavoredWeapon.ToCore()
+                FavoredWeapon = dal.FavoredWeapon.()
             };
         }
 
@@ -31,6 +30,6 @@ namespace DAL.Deities
             }
 
             return deity;
-        }
+        }*/
     }
 }
