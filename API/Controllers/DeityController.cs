@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Core.Deites;
+using Core.Deites.Requests;
 
 namespace API.Controllers
 {
@@ -14,38 +15,40 @@ namespace API.Controllers
             this.deityService = deityService;
         }
 
+        [HttpGet]
         [Route("api/deities")]
-        public async Task<IHttpActionResult> Get()
+        public async Task<IHttpActionResult> GetDeities()
         {
             var result = await deityService.GetDeities();
-            var deities = result.ToList(); //To keep from enumerating multiple times 
-
-            if (deities.Any())
+            
+            if (result.Success)
             {
-                return Ok(deities);
+                return Ok(result);
             }
 
             return NotFound();
         }
 
+        [HttpGet]
         [Route("api/deities/{id}")]
-        public async Task<IHttpActionResult> Get(string id)
+        public async Task<IHttpActionResult> GetDeity(GetDeityRequest request)
         {
-            var item = await deityService.GetDeity(id);
+            var result = await deityService.GetDeity(request);
 
-            if (item != null)
+            if (result.Success)
             {
-                return Ok(item);
+                return Ok(result);
             }
 
             return NotFound();
         }
 
+        [HttpPost]
         [Route("api/deities")]
-        public async Task<IHttpActionResult> Post(Deity deity)
+        public async Task<IHttpActionResult> InsertDeity(InsertDeityRequest request)
         {
-            var success = await deityService.InsertDeity(deity);
-            if (!success)
+            var result = await deityService.InsertDeity(request);
+            if (result.Success)
             {
                 return Ok();
             }
@@ -53,30 +56,32 @@ namespace API.Controllers
             return InternalServerError();
         }
 
+        [HttpPut]
         [Route("api/deities/{id}")]
-        public async Task<IHttpActionResult> Put(Deity deity)
+        public async Task<IHttpActionResult> UpdateDeity(UpdateDeityRequest request)
         {
-            var success = await deityService.UpdateDeity(deity);
+            var result = await deityService.UpdateDeity(request);
 
-            if (success)
+            if (result.Success)
             {
                 return Ok();
             }
 
-            return BadRequest($"Could not find deity with Id {deity.Id}");
+            return BadRequest($"Could not find deity with Id {request.Id}");
         }
 
+        [HttpDelete]
         [Route("api/deities/{id}")]
-        public async Task<IHttpActionResult> Delete(string id)
+        public async Task<IHttpActionResult> DeleteDeity(DeleteDeityRequest request)
         {
-            var success = await deityService.DeleteDeity(id);
+            var result = await deityService.DeleteDeity(request);
 
-            if (success)
+            if (result.Success)
             {
                 return Ok();
             }
 
-            return BadRequest($"Could not find deity with Id {id}");
+            return BadRequest($"Could not find deity with Id {request.Id}");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Core.Alignments;
+﻿using System.Collections.Generic;
+using Core.Alignments;
+using DAL.Domains;
 using DAL.Weapons;
 using MongoDB.Bson;
 
@@ -8,7 +10,7 @@ namespace DAL.Deities
     {
         public ObjectId Id { get; set; }
         public string Description { get; set; }
-        //List<DomainOption> Domains { get; set }
+        public IEnumerable<Domain> Domains { get; set; }
         public Alignment Alignment { get; set; }
         public Weapon FavoredWeapon { get; set; }
     }

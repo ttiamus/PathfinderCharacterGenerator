@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Core.WeaponProperties;
 using Core.Weapons.Requests;
 
 namespace Core.Weapons
@@ -14,16 +13,14 @@ namespace Core.Weapons
         public static bool Validate(this InsertWeaponRequest request)
         {
             return !string.IsNullOrWhiteSpace(request.Name)
-                && !string.IsNullOrWhiteSpace(request.CriticalThreatRange)
-                && request.Properties.Any(prop => !prop.Validate());
+                   && !string.IsNullOrWhiteSpace(request.CriticalThreatRange);
         }
 
         public static bool Validate(this UpdateWeaponRequest request)
         {
             return request.Id != null
-                && !string.IsNullOrWhiteSpace(request.Name)
-                && !string.IsNullOrWhiteSpace(request.CriticalThreatRange)
-                && request.Properties.Any(prop => !prop.Validate());
+                   && !string.IsNullOrWhiteSpace(request.Name)
+                   && !string.IsNullOrWhiteSpace(request.CriticalThreatRange);
         }
 
         public static bool Validate(this DeleteWeaponRequest request)

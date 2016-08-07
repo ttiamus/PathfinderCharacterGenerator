@@ -1,35 +1,48 @@
-﻿using MongoDB.Bson;
+﻿using System.Linq;
+using Core.Deites;
+using Core.Deites.Requests;
+using Core.Deites.Responses;
+using DAL.Domains;
+using DAL.Weapons;
+using MongoDB.Bson;
 
 namespace DAL.Deities
 {
     public static class DeityMapper
     {
-        /*public static Core.Deites.Deity ToCore(this Deity dal)
+        public static DeityResponse ToDeityResponse(this Deity deity)
         {
-            return new Core.Deites.Deity()
+            return new DeityResponse()
             {
-                Id = dal.Id.ToString(),
-                Alignment = dal.Alignment,
-                Description = dal.Description,
-                FavoredWeapon = dal.FavoredWeapon.()
+                Id = deity.Id.ToString(),
+                Description = deity.Description,
+                Domains = deity.Domains.Select(x => x.ToDomainResponse()),
+                Alignment = deity.Alignment,
+                FavoredWeapon = deity.FavoredWeapon.ToWeaponResponse()
             };
         }
 
-        public static Deity ToDal(this Core.Deites.Deity core)
+        public static Deity ToDeity(this InsertDeityRequest request)
         {
-            var deity = new Deity()
+            return new Deity()
             {
-                Alignment = core.Alignment,
-                Description = core.Description,
-                FavoredWeapon = core.FavoredWeapon.ToDal()
+                Description = request.Description,
+                Domains = request.Domains.Select(x => x.ToDomain()),
+                Alignment = request.Alignment,
+                FavoredWeapon = request.FavoredWeapon.ToWeapon()
             };
+        }
 
-            if (!string.IsNullOrWhiteSpace(core.Id))
+        public static Deity ToDeity(this UpdateDeityRequest request)
+        {
+            return new Deity()
             {
-                deity.Id = ObjectId.Parse(core.Id);
-            }
-
-            return deity;
-        }*/
+                Id = ObjectId.Parse(request.Id),
+                Description = request.Description,
+                Domains = request.Domains.Select(x => x.ToDomain()),
+                Alignment = request.Alignment,
+                FavoredWeapon = request.FavoredWeapon.ToWeapon()
+            };
+        }
     }
 }

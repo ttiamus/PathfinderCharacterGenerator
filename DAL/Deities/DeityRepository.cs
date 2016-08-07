@@ -2,7 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Results;
 using Core.Deites;
+using Core.Deites.Requests;
+using Core.Deites.Responses;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
@@ -19,31 +22,35 @@ namespace DAL.Deities
             collection = database.GetCollection<Deity>("Deities");
         }
 
-        public async Task<IEnumerable<Core.Deites.Deity>> GetDeities()
+        public async Task<Result<IEnumerable<DeityResponse>>> GetDeities()
         {
-            var deitys = await collection.Find(x => true).ToListAsync();
-            return deitys.Select(deity => deity.ToCore());
+            var result = await collection.Find(x => true).ToListAsync();
+            var deities = result.Select(deity => deity.ToDeityResponse());
+            return new Result<IEnumerable<DeityResponse>>(deities);
         }
 
-        public async Task<Core.Deites.Deity> GetDeity(string id)
+        public async Task<Result<DeityResponse>> GetDeity(GetDeityRequest request)
         {
-            var deity = await collection.Find(x => x.Id.Equals(ObjectId.Parse(id))).FirstOrDefaultAsync();
-            return deity.ToCore();
+            var deity = await collection.Find(x => x.Id.Equals(ObjectId.Parse(request.Id))).FirstOrDefaultAsync();
+            return new Result<DeityResponse>(deity.ToDeityResponse());
         }
 
-        public async Task InsertDeity(Core.Deites.Deity deity)
+        public async Task<Result> InsertDeity(InsertDeityRequest request)
         {
-            await collection.InsertOneAsync(deity.ToDal());
+            await collection.InsertOneAsync(request.ToDeity());
+            return await Task.Run(() => new Result());
         }
 
-        public async Task UpdateDeity(Core.Deites.Deity deity)
+        public async Task<Result> UpdateDeity(UpdateDeityRequest request)
         {
-            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(deity.Id)), deity.ToDal());
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)), request.ToDeity());
+            return await Task.Run(() => new Result());
         }
 
-        public async Task DeleteDeity(string id)
+        public async Task<Result> DeleteDeity(DeleteDeityRequest request)
         {
-            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(id)));
+            await collection.DeleteOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)));
+            return await Task.Run(() => new Result());
         }
     }
 }

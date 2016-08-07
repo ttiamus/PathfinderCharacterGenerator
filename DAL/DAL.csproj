@@ -63,6 +63,8 @@
     <Compile Include="Deities\Deity.cs" />
     <Compile Include="Deities\DeityMapper.cs" />
     <Compile Include="Deities\DeityRepository.cs" />
+    <Compile Include="Domains\Domain.cs" />
+    <Compile Include="Domains\DomainMaper.cs" />
     <Compile Include="Feats\Feat.cs" />
     <Compile Include="Feats\FeatMapper.cs" />
     <Compile Include="Feats\FeatRepository.cs" />

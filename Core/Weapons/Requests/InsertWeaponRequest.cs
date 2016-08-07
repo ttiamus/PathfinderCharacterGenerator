@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Core.Enum;
-using Core.WeaponProperties;
 
 namespace Core.Weapons.Requests
 {

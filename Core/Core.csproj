@@ -63,10 +63,19 @@
     <Compile Include="Characters\ICharacterRepository.cs" />
     <Compile Include="Characters\ICharacterService.cs" />
     <Compile Include="Classes\Class.cs" />
-    <Compile Include="Deites\Deity.cs" />
+    <Compile Include="Deites\Requests\DeleteDeityRequest.cs" />
+    <Compile Include="Deites\Requests\GetDeityRequest.cs" />
+    <Compile Include="Deites\Requests\InsertDeityRequest.cs" />
+    <Compile Include="Deites\Requests\UpdateDeityRequest.cs" />
+    <Compile Include="Deites\Responses\DeityResponse.cs" />
     <Compile Include="Deites\DeityService.cs" />
     <Compile Include="Deites\IDeityRepository.cs" />
     <Compile Include="Deites\IDeityService.cs" />
+    <Compile Include="Domains\Requests\DeleteDomainRequest.cs" />
+    <Compile Include="Domains\Requests\GetDomainRequest.cs" />
+    <Compile Include="Domains\Requests\InsertDomainRequest.cs" />
+    <Compile Include="Domains\Requests\UpdateDomainRequest.cs" />
+    <Compile Include="Domains\Responses\DomainResponse.cs" />
     <Compile Include="Enum\ArmorType.cs" />
     <Compile Include="Enum\CharacterSize.cs" />
     <Compile Include="Enum\Dice.cs" />
@@ -97,7 +106,6 @@
     <Compile Include="Races\Responses\Race.cs" />
     <Compile Include="Races\RaceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WeaponProperties\WeaponPropertyExtensions.cs" />
     <Compile Include="Weapons\IWeaponRepository.cs" />
     <Compile Include="Weapons\IWeaponService.cs" />
     <Compile Include="Weapons\Requests\DeleteWeaponRequest.cs" />
@@ -105,7 +113,7 @@
     <Compile Include="Weapons\Requests\InsertWeaponRequest.cs" />
     <Compile Include="Weapons\Requests\UpdateWeaponRequest.cs" />
     <Compile Include="Weapons\Responses\WeaponResponse.cs" />
-    <Compile Include="WeaponProperties\WeaponProperty.cs" />
+    <Compile Include="Enum\WeaponProperty.cs" />
     <Compile Include="Weapons\WeaponExtensions.cs" />
     <Compile Include="Weapons\WeaponService.cs" />
   </ItemGroup>

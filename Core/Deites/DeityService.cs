@@ -1,33 +1,43 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Common.Results;
+using Core.Deites.Requests;
+using Core.Deites.Responses;
 
 namespace Core.Deites
 {
     public class DeityService : IDeityService
     {
-        public Task<IEnumerable<Deity>> GetDeities()
+        private readonly IDeityRepository repo;
+
+        public DeityService(IDeityRepository repo)
         {
-            throw new System.NotImplementedException();
+            this.repo = repo;
         }
 
-        public Task<Deity> GetDeity(string id)
+        public async Task<Result<IEnumerable<DeityResponse>>> GetDeities()
         {
-            throw new System.NotImplementedException();
+            return await repo.GetDeities();
         }
 
-        public Task<bool> InsertDeity(Deity Deity)
+        public async Task<Result<DeityResponse>> GetDeity(GetDeityRequest request)
         {
-            throw new System.NotImplementedException();
+            return await repo.GetDeity(request);
         }
 
-        public Task<bool> UpdateDeity(Deity Deity)
+        public async Task<Result> InsertDeity(InsertDeityRequest request)
         {
-            throw new System.NotImplementedException();
+            return await repo.InsertDeity(request);
         }
 
-        public Task<bool> DeleteDeity(string id)
+        public async Task<Result> UpdateDeity(UpdateDeityRequest request)
         {
-            throw new System.NotImplementedException();
+            return await repo.UpdateDeity(request);
+        }
+
+        public async Task<Result> DeleteDeity(DeleteDeityRequest request)
+        {
+            return await repo.DeleteDeity(request);
         }
     }
 }

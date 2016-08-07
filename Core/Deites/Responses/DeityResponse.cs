@@ -1,13 +1,15 @@
-﻿using Core.Alignments;
+﻿using System.Collections.Generic;
+using Core.Alignments;
+using Core.Domains.Responses;
 using Core.Weapons.Responses;
 
-namespace Core.Deites
+namespace Core.Deites.Responses
 {
-    public class Deity
+    public class DeityResponse
     {
         public string Id { get; set; }
         public string Description { get; set; }
-        //List<DomainOption> Domains { get; set }
+        public IEnumerable<DomainResponse> Domains { get; set; }
         public Alignment Alignment { get; set; }
         public WeaponResponse FavoredWeapon { get; set; }
     }
