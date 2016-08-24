@@ -75,6 +75,7 @@
     <Compile Include="Races\Race.cs" />
     <Compile Include="Races\RaceMapper.cs" />
     <Compile Include="Races\RaceRepository.cs" />
+    <Compile Include="WeaponProperties\WeaponProperty.cs" />
     <Compile Include="Weapons\Weapon.cs" />
     <Compile Include="Weapons\WeaponMapper.cs" />
     <Compile Include="Weapons\WeaponRepository.cs" />

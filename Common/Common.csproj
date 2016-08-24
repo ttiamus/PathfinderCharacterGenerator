@@ -46,6 +46,7 @@
     <Compile Include="Interfaces\IQueryHandler.cs" />
     <Compile Include="Interfaces\ICommandRepository.cs" />
     <Compile Include="Interfaces\IQueryRepository.cs" />
+    <Compile Include="Interfaces\IRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\CommandResult.cs" />
     <Compile Include="Results\QueryResult.cs" />

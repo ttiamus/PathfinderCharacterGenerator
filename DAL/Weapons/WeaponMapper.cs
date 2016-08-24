@@ -12,14 +12,14 @@ namespace DAL.Weapons
             {
                 Id = weapon.Id.ToString(),
                 Name = weapon.Name,
-                WeaponType = weapon.WeaponType,
+                WeaponTypeId = weapon.WeaponTypeId,
                 Cost = weapon.Cost,
                 CriticalMultiplier = weapon.CriticalMultiplier,
                 CriticalThreatRange = weapon.CriticalThreatRange,
                 DamageDice = weapon.DamageDice,
-                DamageType = weapon.DamageType,
+                //DamageTypes = weapon.DamageTypes, //TODO:Come back to this
                 NumberOfDice = weapon.NumberOfDice,
-                Properties = weapon.Properties,
+                PropertyIds = weapon.PropertyIds,
                 Range = weapon.Range,
                 Weight = weapon.Weight
             };
@@ -30,14 +30,14 @@ namespace DAL.Weapons
             return new Weapon()
             {
                 Name = request.Name,
-                WeaponType = request.WeaponType,
+                WeaponTypeId = request.WeaponTypeId,
                 Cost = request.Cost,
                 CriticalMultiplier = request.CriticalMultiplier,
                 CriticalThreatRange = request.CriticalThreatRange,
                 DamageDice = request.DamageDice,
-                DamageType = request.DamageType,
+                DamageTypes = request.DamageTypes,
                 NumberOfDice = request.NumberOfDice,
-                Properties = request.Properties,
+                PropertyIds = request.PropertyIds,
                 Range = request.Range,
                 Weight = request.Weight
             };
@@ -49,14 +49,14 @@ namespace DAL.Weapons
             {
                 Id = ObjectId.Parse(request.Id),
                 Name = request.Name,
-                WeaponType = request.WeaponType,
+                WeaponTypeId = request.WeaponTypeId,
                 Cost = request.Cost,
                 CriticalMultiplier = request.CriticalMultiplier,
                 CriticalThreatRange = request.CriticalThreatRange,
                 DamageDice = request.DamageDice,
-                DamageType = request.DamageType,
+                DamageTypes = request.DamageTypes,
                 NumberOfDice = request.NumberOfDice,
-                Properties = request.Properties,
+                PropertyIds = request.PropertyIds,
                 Range = request.Range,
                 Weight = request.Weight
             };

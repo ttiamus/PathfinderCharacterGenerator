@@ -79,9 +79,7 @@
     <Compile Include="Enum\ArmorType.cs" />
     <Compile Include="Enum\CharacterSize.cs" />
     <Compile Include="Enum\Dice.cs" />
-    <Compile Include="Enum\ItemType.cs" />
     <Compile Include="Enum\WeaponDamageType.cs" />
-    <Compile Include="Enum\WeaponType.cs" />
     <Compile Include="Feats\Feat.cs" />
     <Compile Include="Feats\FeatService.cs" />
     <Compile Include="Feats\IFeatRepository.cs" />
@@ -106,6 +104,14 @@
     <Compile Include="Races\Responses\Race.cs" />
     <Compile Include="Races\RaceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeaponDamageTypes\IWeaponDamageTypeService.cs" />
+    <Compile Include="WeaponDamageTypes\Requests\GetWeaponDamageTypesRequest.cs" />
+    <Compile Include="WeaponDamageTypes\Responses\WeaponDamageTypeResponse.cs" />
+    <Compile Include="WeaponDamageTypes\WeaponDamageTypeService.cs" />
+    <Compile Include="WeaponProperties\IWeaponPropertyService.cs" />
+    <Compile Include="WeaponProperties\Requests\GetWeaponPropertiesRequest.cs" />
+    <Compile Include="WeaponProperties\Responses\WeaponPropertyResponse.cs" />
+    <Compile Include="WeaponProperties\WeaponPropertyService.cs" />
     <Compile Include="Weapons\IWeaponRepository.cs" />
     <Compile Include="Weapons\IWeaponService.cs" />
     <Compile Include="Weapons\Requests\DeleteWeaponRequest.cs" />
@@ -113,7 +119,6 @@
     <Compile Include="Weapons\Requests\InsertWeaponRequest.cs" />
     <Compile Include="Weapons\Requests\UpdateWeaponRequest.cs" />
     <Compile Include="Weapons\Responses\WeaponResponse.cs" />
-    <Compile Include="Enum\WeaponProperty.cs" />
     <Compile Include="Weapons\WeaponExtensions.cs" />
     <Compile Include="Weapons\WeaponService.cs" />
   </ItemGroup>

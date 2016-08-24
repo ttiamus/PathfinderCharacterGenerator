@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3935F45-38B5-4407-876E-C7CB8B31E1E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core.V2</RootNamespace>
+    <AssemblyName>Core.V2</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alignments\Models\Data\Alignment.cs" />
+    <Compile Include="Alignments\Models\Responses\AlignmentResponse.cs" />
+    <Compile Include="Armors\Models\Data\Armor.cs" />
+    <Compile Include="Armors\ArmorService.cs" />
+    <Compile Include="Armors\IArmorService.cs" />
+    <Compile Include="Armors\Models\Responses\ArmorResponse.cs" />
+    <Compile Include="Characters\CharacterService.cs" />
+    <Compile Include="Characters\ICharacterService.cs" />
+    <Compile Include="Characters\Models\Data\Character.cs" />
+    <Compile Include="Characters\Models\Responses\CharacterResponse.cs" />
+    <Compile Include="Classes\Models\Data\Class.cs" />
+    <Compile Include="Classes\Models\Responses\ClassResponse.cs" />
+    <Compile Include="Deites\DeityService.cs" />
+    <Compile Include="Deites\IDeityService.cs" />
+    <Compile Include="Deites\DeleteDeity\DeleteDeityRequest.cs" />
+    <Compile Include="Deites\GetDeity\GetDeityRequest.cs" />
+    <Compile Include="Deites\CreateDeity\CreateDeityRequest.cs" />
+    <Compile Include="Deites\Models\Data\Deity.cs" />
+    <Compile Include="Deites\UpdateDeity\UpdateDeityRequest.cs" />
+    <Compile Include="Deites\Models\Responses\DeityResponse.cs" />
+    <Compile Include="Domains\DeleteDomain\DeleteDomainRequest.cs" />
+    <Compile Include="Domains\GetDomain\GetDomainRequest.cs" />
+    <Compile Include="Domains\CreateDomain\CreateDomainRequest.cs" />
+    <Compile Include="Domains\Models\Data\Domain.cs" />
+    <Compile Include="Domains\UpdateDomain\UpdateDomainRequest.cs" />
+    <Compile Include="Domains\Models\Responses\DomainResponse.cs" />
+    <Compile Include="Enum\ArmorType.cs" />
+    <Compile Include="Enum\CharacterSize.cs" />
+    <Compile Include="Enum\Dice.cs" />
+    <Compile Include="Enum\WeaponDamageType.cs" />
+    <Compile Include="Feats\Feat.cs" />
+    <Compile Include="Feats\FeatService.cs" />
+    <Compile Include="Feats\IFeatService.cs" />
+    <Compile Include="Feats\Models\Data\Feat.cs" />
+    <Compile Include="Feats\Models\Responses\FeatResponse.cs" />
+    <Compile Include="Items\IItemService.cs" />
+    <Compile Include="Items\ItemExtensions.cs" />
+    <Compile Include="Items\ItemService.cs" />
+    <Compile Include="Items\DeleteItem\DeleteItemRequest.cs" />
+    <Compile Include="Items\GetItem\GetItemRequest.cs" />
+    <Compile Include="Items\GetAllItems\GetAllItemsRequest.cs" />
+    <Compile Include="Items\CreateItem\CreateItemRequest.cs" />
+    <Compile Include="Items\Models\Data\Item.cs" />
+    <Compile Include="Items\UpdateItem\UpdateItemRequest.cs" />
+    <Compile Include="Items\Models\Responses\ItemResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Races\IRaceService.cs" />
+    <Compile Include="Races\Models\Data\Race.cs" />
+    <Compile Include="Races\RaceExtensions.cs" />
+    <Compile Include="Races\RaceService.cs" />
+    <Compile Include="Races\DeleteRace\DeleteRaceRequest.cs" />
+    <Compile Include="Races\GetRace\GetRaceRequest.cs" />
+    <Compile Include="Races\CreateRace\CreateRaceRequest.cs" />
+    <Compile Include="Races\UpdateRace\UpdateRaceRequest.cs" />
+    <Compile Include="Races\Models\Responses\RaceResponse.cs" />
+    <Compile Include="Spells\Models\Data\Spell.cs" />
+    <Compile Include="Spells\Models\Responses\SpellResponse.cs" />
+    <Compile Include="Traits\Models\Data\Trait.cs" />
+    <Compile Include="Traits\Models\Responses\TraitResponse.cs" />
+    <Compile Include="WeaponDamageTypes\CreateWeaponDamageType\CreateWeaponDamageTypeHandler.cs" />
+    <Compile Include="WeaponDamageTypes\CreateWeaponDamageType\CreateWeaponDamageTypeRepository.cs" />
+    <Compile Include="WeaponDamageTypes\CreateWeaponDamageType\CreateWeaponDamageTypeRequest.cs" />
+    <Compile Include="WeaponDamageTypes\DeleteWeaponDamageType\DeleteWeaponDamageTypeHandler.cs" />
+    <Compile Include="WeaponDamageTypes\DeleteWeaponDamageType\DeleteWeaponDamageTypeRepository.cs" />
+    <Compile Include="WeaponDamageTypes\DeleteWeaponDamageType\DeleteWeaponDamageTypeRequest.cs" />
+    <Compile Include="WeaponDamageTypes\GetAllWeaponDamageTypes\GetAllWeaponDamageTypesHandler.cs" />
+    <Compile Include="WeaponDamageTypes\GetAllWeaponDamageTypes\GetAllWeaponDamageTypesRepository.cs" />
+    <Compile Include="WeaponDamageTypes\GetWeaponDamageType\GetWeaponDamageTypeHandler.cs" />
+    <Compile Include="WeaponDamageTypes\GetWeaponDamageType\GetWeaponDamageTypeRepository.cs" />
+    <Compile Include="WeaponDamageTypes\GetWeaponDamageType\GetWeaponDamageTypeRequest.cs" />
+    <Compile Include="WeaponDamageTypes\IWeaponDamageTypeService.cs" />
+    <Compile Include="WeaponDamageTypes\GetAllWeaponDamageTypes\GetAllWeaponDamageTypesRequest.cs" />
+    <Compile Include="WeaponDamageTypes\Models\Data\WeaponDamageType.cs" />
+    <Compile Include="WeaponDamageTypes\Models\Responses\WeaponDamageTypeResponse.cs" />
+    <Compile Include="WeaponDamageTypes\UpdateWeaponDamageType\UpdateWeaponDamageTypeHandler.cs" />
+    <Compile Include="WeaponDamageTypes\UpdateWeaponDamageType\UpdateWeaponDamageTypeRepository.cs" />
+    <Compile Include="WeaponDamageTypes\UpdateWeaponDamageType\UpdateWeaponDamageTypeRequest.cs" />
+    <Compile Include="WeaponDamageTypes\WeaponDamageTypeService.cs" />
+    <Compile Include="WeaponProperties\CreateWeaponProperty\CreateWeaponPropertyHandler.cs" />
+    <Compile Include="WeaponProperties\CreateWeaponProperty\CreateWeaponPropertyRepository.cs" />
+    <Compile Include="WeaponProperties\CreateWeaponProperty\CreateWeaponPropertyRequest.cs" />
+    <Compile Include="WeaponProperties\DeleteWeaponProperty\DeleteWeaponPropertyHandler.cs" />
+    <Compile Include="WeaponProperties\DeleteWeaponProperty\DeleteWeaponPropertyRepository.cs" />
+    <Compile Include="WeaponProperties\DeleteWeaponProperty\DeleteWeaponPropertyRequest.cs" />
+    <Compile Include="WeaponProperties\GetAllWeaponProperties\GetAllWeaponPropertiesHandler.cs" />
+    <Compile Include="WeaponProperties\GetAllWeaponProperties\GetAllWeaponPropertiesRepository.cs" />
+    <Compile Include="WeaponProperties\GetWeaponProperty\GetWeaponPropertyHandler.cs" />
+    <Compile Include="WeaponProperties\GetWeaponProperty\GetWeaponPropertyRepository.cs" />
+    <Compile Include="WeaponProperties\GetWeaponProperty\GetWeaponPropertyRequest.cs" />
+    <Compile Include="WeaponProperties\IWeaponPropertyService.cs" />
+    <Compile Include="WeaponProperties\GetAllWeaponProperties\GetAllWeaponPropertiesRequest.cs" />
+    <Compile Include="WeaponProperties\Models\Data\WeaponProperty.cs" />
+    <Compile Include="WeaponProperties\Models\Responses\WeaponPropertyResponse.cs" />
+    <Compile Include="WeaponProperties\UpdateWeaponProperty\UpdateWeaponPropertyHandler.cs" />
+    <Compile Include="WeaponProperties\UpdateWeaponProperty\UpdateWeaponPropertyRepository.cs" />
+    <Compile Include="WeaponProperties\UpdateWeaponProperty\UpdateWeaponPropertyRequest.cs" />
+    <Compile Include="WeaponProperties\WeaponPropertyService.cs" />
+    <Compile Include="Weapons\CreateWeapon\CreateWeaponHandler.cs" />
+    <Compile Include="Weapons\CreateWeapon\CreateWeaponRepository.cs" />
+    <Compile Include="Weapons\CreateWeapon\CreateWeaponRequest.cs" />
+    <Compile Include="Weapons\DeleteWeapon\DeleteWeaponHandler.cs" />
+    <Compile Include="Weapons\DeleteWeapon\DeleteWeaponRepository.cs" />
+    <Compile Include="Weapons\GetAllWeapons\GetAllWeaponsHandler.cs" />
+    <Compile Include="Weapons\GetAllWeapons\GetAllWeaponsRepository.cs" />
+    <Compile Include="Weapons\GetAllWeapons\GetAllWeaponsRequest.cs" />
+    <Compile Include="Weapons\GetWeapon\GetWeaponHandler.cs" />
+    <Compile Include="Weapons\GetWeapon\GetWeaponRepository.cs" />
+    <Compile Include="Weapons\IWeaponService.cs" />
+    <Compile Include="Weapons\DeleteWeapon\DeleteWeaponRequest.cs" />
+    <Compile Include="Weapons\GetWeapon\GetWeaponRequest.cs" />
+    <Compile Include="Weapons\Models\Data\Weapon.cs" />
+    <Compile Include="Weapons\UpdateWeapon\UpdateWeaponHandler.cs" />
+    <Compile Include="Weapons\UpdateWeapon\UpdateWeaponRepository.cs" />
+    <Compile Include="Weapons\UpdateWeapon\UpdateWeaponRequest.cs" />
+    <Compile Include="Weapons\Models\Responses\WeaponResponse.cs" />
+    <Compile Include="Weapons\WeaponExtensions.cs" />
+    <Compile Include="Weapons\WeaponService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c38107ed-e973-4692-8638-0c3db2d0ab58}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Alignments\CreateAlignment\" />
+    <Folder Include="Alignments\DeleteAlignment\" />
+    <Folder Include="Alignments\GetAlignment\" />
+    <Folder Include="Alignments\GetAllAlignments\" />
+    <Folder Include="Alignments\UpdateAlignment\" />
+    <Folder Include="Armors\CreateArmor\" />
+    <Folder Include="Armors\DeleteArmor\" />
+    <Folder Include="Armors\GetAllArmors\" />
+    <Folder Include="Armors\GetArmor\" />
+    <Folder Include="Armors\UpdateArmor\" />
+    <Folder Include="Characters\CreateCharacter\" />
+    <Folder Include="Characters\DeleteCharacter\" />
+    <Folder Include="Characters\GetAllCharacters\" />
+    <Folder Include="Characters\GetCharacter\" />
+    <Folder Include="Characters\UpdateCharacter\" />
+    <Folder Include="Classes\CreateClass\" />
+    <Folder Include="Classes\DeleteClass\" />
+    <Folder Include="Classes\GetAllClasses\" />
+    <Folder Include="Classes\GetClass\" />
+    <Folder Include="Classes\UpdateClass\" />
+    <Folder Include="Deites\GetAllDeities\" />
+    <Folder Include="Domains\GetAllDomains\" />
+    <Folder Include="Feats\CreateFeat\" />
+    <Folder Include="Feats\DeleteFeat\" />
+    <Folder Include="Feats\GetAllFeats\" />
+    <Folder Include="Feats\GetFeat\" />
+    <Folder Include="Feats\UpdateFeat\" />
+    <Folder Include="Races\GetAllRaces\" />
+    <Folder Include="Spells\CreateSpell\" />
+    <Folder Include="Spells\DeleteSpell\" />
+    <Folder Include="Spells\GetAllSpells\" />
+    <Folder Include="Spells\GetSpell\" />
+    <Folder Include="Spells\UpdateSpell\" />
+    <Folder Include="Traits\CreateTrait\" />
+    <Folder Include="Traits\DeleteTrait\" />
+    <Folder Include="Traits\GetAllTraits\" />
+    <Folder Include="Traits\GetTrait\" />
+    <Folder Include="Traits\UpdateTrait\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -29,7 +29,7 @@ namespace DAL.Deities
                 Description = request.Description,
                 Domains = request.Domains.Select(x => x.ToDomain()),
                 Alignment = request.Alignment,
-                FavoredWeapon = request.FavoredWeapon.ToWeapon()
+                //FavoredWeapon = request.FavoredWeapon.ToWeapon()              //TODO:Fix this
             };
         }
 
@@ -41,7 +41,7 @@ namespace DAL.Deities
                 Description = request.Description,
                 Domains = request.Domains.Select(x => x.ToDomain()),
                 Alignment = request.Alignment,
-                FavoredWeapon = request.FavoredWeapon.ToWeapon()
+                //FavoredWeapon = request.FavoredWeapon.ToWeapon()          //TODO: Fix this
             };
         }
     }

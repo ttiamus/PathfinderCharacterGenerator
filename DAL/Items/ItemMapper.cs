@@ -12,7 +12,7 @@ namespace DAL.Items
             {
                 Id = item.Id.ToString(),
                 Name = item.Name,
-                Type = item.Type,
+                ItemTypeId = item.ItemTypeId,
                 Cost = item.Cost,
                 Weight = item.Weight
             };
@@ -23,7 +23,7 @@ namespace DAL.Items
             return new Item()
             {
                 Name = request.Name,
-                Type = request.Type,
+                ItemTypeId = request.ItemTypeId,
                 Cost = request.Cost,
                 Weight = request.Weight
             };
@@ -35,7 +35,7 @@ namespace DAL.Items
             {
                 Id = ObjectId.Parse(request.Id),
                 Name = request.Name,
-                Type = request.Type,
+                ItemTypeId = request.ItemTypeId,
                 Cost = request.Cost,
                 Weight = request.Weight
             };

@@ -39,5 +39,14 @@ namespace Common.Results
             this.Messages = new List<string>();
             this.Exceptions = new List<Exception> { exception };
         }
+
+        public Result Append(Result result)
+        {
+
+            Success = Success && result.Success;
+            Messages.AddRange(result.Messages);
+            Exceptions.AddRange(result.Exceptions);
+            return result;
+        }
     }
 }

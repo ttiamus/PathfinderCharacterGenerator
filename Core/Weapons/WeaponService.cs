@@ -1,6 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Results;
+using Core.WeaponDamageTypes;
+using Core.WeaponDamageTypes.Requests;
+using Core.WeaponDamageTypes.Responses;
+using Core.WeaponProperties;
+using Core.WeaponProperties.Requests;
+using Core.WeaponProperties.Responses;
 using Core.Weapons.Requests;
 using Core.Weapons.Responses;
 
@@ -10,8 +16,14 @@ namespace Core.Weapons
     {
         private readonly IWeaponRepository repo;
 
-        public WeaponService(IWeaponRepository repo)
+        private readonly IWeaponPropertyService weaponPropertyService;
+        private readonly IWeaponDamageTypeService weaponDamageTypeService;
+
+        public WeaponService(IWeaponRepository repo, IWeaponPropertyService weaponPropertyService, IWeaponDamageTypeService weaponDamageTypeService)
         {
+            this.weaponPropertyService = weaponPropertyService;
+            this.weaponDamageTypeService = weaponDamageTypeService;
+
             this.repo = repo;
         }
 
@@ -24,7 +36,27 @@ namespace Core.Weapons
         {
             if (request.Validate())
             {
-                return await repo.GetWeapon(request);
+                var weaponResult = await repo.GetWeapon(request);
+                if (weaponResult.Success)
+                {
+                    var damageTypeRequest = new GetWeaponDamageTypesRequest() { WeaponDamageTypeIds = weaponResult.Data.DamageTypeIds };
+                    var damageTypeResult = await weaponDamageTypeService.GetWeaponDamageTypes(damageTypeRequest);
+                    if (damageTypeResult.Success)
+                    {
+                        weaponResult.Data.DamageTypes = damageTypeResult.Data;
+
+                        var propertyRequest = new GetWeaponPropertiesRequest() {WeaponPropertyIds = weaponResult.Data.PropertyIds};
+                        var propertyResult = await weaponPropertyService.GetWeaponProperties(propertyRequest);
+
+                        if (propertyResult.Success)
+                        {
+                            weaponResult.Data.Properties = propertyResult.Data;
+                            return weaponResult;
+                        }
+                    }
+
+                    return weaponResult;
+                }
             }
 
             return await Task.Run(() => new Result<WeaponResponse>("Invalid Get Weapon request"));
