@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Common.Interfaces;
 
-namespace Core.V2.WeaponDamageTypes.GetAllWeaponDamataTypes
+namespace Core.V2.WeaponDamageTypes.GetAllWeaponDamageTypes
 {
     public class GetAllWeaponDamageTypesRequest : IRequest
     {

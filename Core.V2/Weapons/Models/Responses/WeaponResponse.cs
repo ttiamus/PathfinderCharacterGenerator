@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Core.V2.Enum;
 using Core.V2.WeaponDamageTypes.Models.Responses;
 using Core.V2.WeaponProperties.Models.Responses;
 

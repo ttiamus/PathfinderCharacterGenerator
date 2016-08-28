@@ -1,4 +1,4 @@
-﻿using Core.V2.Enum;
+﻿using Core.V2.Characters;
 
 namespace Core.V2.Races.Models.Responses
 {

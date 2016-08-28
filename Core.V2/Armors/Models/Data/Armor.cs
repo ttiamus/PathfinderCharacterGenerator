@@ -1,6 +1,4 @@
-﻿using Core.V2.Enum;
-
-namespace Core.V2.Armors.Models.Data
+﻿namespace Core.V2.Armors.Models.Data
 {
     public class Armor
     {
