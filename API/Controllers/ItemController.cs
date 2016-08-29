@@ -2,8 +2,13 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using API.Filters;
-using Core.Items;
-using Core.Items.Requests;
+using Core.V2.Items;
+using Core.V2.Items.CreateItem;
+using Core.V2.Items.DeleteItem;
+using Core.V2.Items.GetAllItems;
+using Core.V2.Items.GetItem;
+using Core.V2.Items.UpdateItem;
+
 
 namespace API.Controllers
 {
@@ -19,71 +24,51 @@ namespace API.Controllers
         [HttpGet]
         [Route("items")]
         [UnhandledExceptionFilter]
-        public async Task<IHttpActionResult> GetItems()
+        public async Task<IHttpActionResult> GetItems(GetAllItemsRequest request)
         {
-            var result = await itemService.GetItems();
-
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
-
-            return NotFound();
+            await itemService.GetAllItems(request);
+            return Ok();
         }
 
         [HttpGet]
         [Route("items/itemId/{id}")]
+        [UnhandledExceptionFilter]
         public async Task<IHttpActionResult> GetItem(GetItemRequest request)
         {
-            var result = await itemService.GetItem(request);
+            await itemService.GetItem(request);
+            return Ok();
 
-            if (result.Success)
-            {
-                return Ok(result.Data);
-            }
-
-            return NotFound();
         }
 
         [HttpPost]
         [Route("items")]
-        public async Task<IHttpActionResult> InsertItem(InsertItemRequest request)
+        [UnhandledExceptionFilter]
+        public async Task<IHttpActionResult> InsertItem(CreateItemRequest request)
         {
-            var result = await itemService.InsertItem(request);
-            if (!result.Success)
-            {
-                return Ok();
-            }
-
-            return InternalServerError();
+            await itemService.CreateItem(request);
+            return Ok();
         }
 
         [HttpPut]
-        [Route("items")] 
+        [Route("items")]
+        [UnhandledExceptionFilter]
         public async Task<IHttpActionResult> UpdateItem(UpdateItemRequest request)
         {
-            var result = await itemService.UpdateItem(request);
+            await itemService.UpdateItem(request);
 
-            if (result.Success)
-            {
-                return Ok();
-            }
-            return BadRequest();
+            return Ok();
+
             //return BadRequest($"Could not find item with Id {item.Id}");
         }
 
         [HttpDelete]
         [Route("items/itemId/{id}")]
+        [UnhandledExceptionFilter]
         public async Task<IHttpActionResult> DeleteItem(DeleteItemRequest request)
         {
-            var result = await itemService.DeleteItem(request);
+            await itemService.DeleteItem(request);
 
-            if (result.Success)
-            {
-                return Ok();
-            }
-
-            return BadRequest($"Could not find item with Id {request.Id}");
+            return Ok();
         }
     }
 }

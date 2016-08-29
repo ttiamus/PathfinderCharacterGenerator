@@ -99,6 +99,10 @@
       <Project>{c38107ed-e973-4692-8638-0c3db2d0ab58}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.V2\Core.V2.csproj">
+      <Project>{C3935F45-38B5-4407-876E-C7CB8B31E1E7}</Project>
+      <Name>Core.V2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{e2672421-ddfa-4af1-9d8d-b65e5237077c}</Project>
       <Name>Core</Name>
