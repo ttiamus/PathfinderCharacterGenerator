@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationConfiguration.cs" />
+    <Compile Include="Configuration\ApplicationConfiguration.cs" />
+    <Compile Include="Configuration\EnvironmentConfiguration\ProductionConfiguration.cs" />
+    <Compile Include="Configuration\EnvironmentConfiguration\TestConfiguration.cs" />
+    <Compile Include="Configuration\IApplicationConfiguration.cs" />
     <Compile Include="Interfaces\ICommandHandler.cs" />
     <Compile Include="Interfaces\IQueryHandler.cs" />
     <Compile Include="Interfaces\ICommandRepository.cs" />
@@ -51,6 +54,7 @@
     <Compile Include="Results\CommandResult.cs" />
     <Compile Include="Results\QueryResult.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

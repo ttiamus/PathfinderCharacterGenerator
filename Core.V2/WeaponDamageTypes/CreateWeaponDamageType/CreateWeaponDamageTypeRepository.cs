@@ -6,7 +6,7 @@ namespace Core.V2.WeaponDamageTypes.CreateWeaponDamageType
 {
     public class CreateWeaponDamageTypeRepository : ICommandRepository<CreateWeaponDamageTypeRequest>
     {
-        public Task<Result> SaveChanges(CreateWeaponDamageTypeRequest request)
+        public Task SaveChanges(CreateWeaponDamageTypeRequest request)
         {
             throw new System.NotImplementedException();
         }

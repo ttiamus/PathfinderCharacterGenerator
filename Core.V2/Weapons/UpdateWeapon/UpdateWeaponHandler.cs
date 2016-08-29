@@ -7,12 +7,12 @@ namespace Core.V2.Weapons.UpdateWeapon
 {
     public class UpdateWeaponHandler : ICommandHandler<UpdateWeaponRequest>
     {
-        public Task<bool> Validate(UpdateWeaponRequest request)
+        public void Validate(UpdateWeaponRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<Result> Execute(UpdateWeaponRequest request)
+        public Task Execute(UpdateWeaponRequest request)
         {
             throw new System.NotImplementedException();
         }

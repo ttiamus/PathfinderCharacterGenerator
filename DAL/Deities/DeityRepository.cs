@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Configuration;
 using Common.Results;
 using Core.Deites;
 using Core.Deites.Requests;
@@ -14,10 +15,12 @@ namespace DAL.Deities
     public class DeityRepository : IDeityRepository
     {
         private readonly IMongoCollection<Deity> collection;
+        private readonly IApplicationConfiguration config;
 
-        public DeityRepository()
+        public DeityRepository(IApplicationConfiguration config)
         {
-            var client = new MongoClient(ApplicationConfiguration.PathfinderConnectionString);
+            this.config = config;
+            var client = new MongoClient(config.PathfinderConnectionString);
             var database = client.GetDatabase("pathfinder");
             collection = database.GetCollection<Deity>("Deities");
         }

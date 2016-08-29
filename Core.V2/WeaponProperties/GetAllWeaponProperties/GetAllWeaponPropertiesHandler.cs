@@ -8,12 +8,12 @@ namespace Core.V2.WeaponProperties.GetAllWeaponProperties
 {
     public class GetAllWeaponPropertiesHandler : IQueryHandler<GetAllWeaponPropertiesRequest, List<WeaponPropertyResponse>>
     {
-        public Task<Result> Validate(GetAllWeaponPropertiesRequest request)
+        public void Validate(GetAllWeaponPropertiesRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<Result<List<WeaponPropertyResponse>>> Execute(GetAllWeaponPropertiesRequest request)
+        public Task<List<WeaponPropertyResponse>> Execute(GetAllWeaponPropertiesRequest request)
         {
             throw new System.NotImplementedException();
         }

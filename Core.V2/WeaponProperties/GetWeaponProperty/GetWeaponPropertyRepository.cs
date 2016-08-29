@@ -7,7 +7,7 @@ namespace Core.V2.WeaponProperties.GetWeaponProperty
 {
     public class GetWeaponPropertyRepository : IQueryRepository<GetWeaponPropertyRequest, WeaponPropertyResponse>
     {
-        public Task<Result<WeaponPropertyResponse>> SaveChanges(GetWeaponPropertyRequest request)
+        public Task<WeaponPropertyResponse> Execute(GetWeaponPropertyRequest request)
         {
             throw new System.NotImplementedException();
         }

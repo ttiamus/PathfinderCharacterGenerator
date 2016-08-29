@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Configuration;
 using Common.Results;
 using Core.Races;
 using Core.Races.Requests;
@@ -14,10 +15,11 @@ namespace DAL.Races
     public class RaceRepository : IRaceRepository
     {
         private readonly IMongoCollection<Race> collection;
-
-        public RaceRepository()
+        private readonly IApplicationConfiguration config;
+        public RaceRepository(IApplicationConfiguration config)
         {
-            var client = new MongoClient(ApplicationConfiguration.PathfinderConnectionString);
+            this.config = config;
+            var client = new MongoClient(config.PathfinderConnectionString);
             var database = client.GetDatabase("pathfinder");
             collection = database.GetCollection<Race>("Races");
         }

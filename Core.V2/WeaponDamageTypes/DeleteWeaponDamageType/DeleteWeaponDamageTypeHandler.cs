@@ -6,12 +6,12 @@ namespace Core.V2.WeaponDamageTypes.DeleteWeaponDamageType
 {
     public class DeleteWeaponDamageTypeHandler : ICommandHandler<DeleteWeaponDamageTypeRequest>
     {
-        public Task<bool> Validate(DeleteWeaponDamageTypeRequest request)
+        public void Validate(DeleteWeaponDamageTypeRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<Result> Execute(DeleteWeaponDamageTypeRequest request)
+        public Task Execute(DeleteWeaponDamageTypeRequest request)
         {
             throw new System.NotImplementedException();
         }

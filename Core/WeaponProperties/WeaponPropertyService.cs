@@ -9,7 +9,7 @@ namespace Core.WeaponProperties
 {
     public class WeaponPropertyService : IWeaponPropertyService
     {
-        public async Task<Result<List<WeaponPropertyResponse>>> GetWeaponProperties(GetWeaponPropertiesRequest request)
+        public Task<Result<List<WeaponPropertyResponse>>> GetWeaponProperties(GetWeaponPropertiesRequest request)
         {
             throw new NotImplementedException();
         }

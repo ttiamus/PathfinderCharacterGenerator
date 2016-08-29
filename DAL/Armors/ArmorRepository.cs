@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Configuration;
 using Core.Armors;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -10,11 +11,14 @@ namespace DAL.Armors
 {
     public class ArmorRepository : IArmorRepository
     {
-        private readonly IMongoCollection<Armor> collection; 
+        private readonly IMongoCollection<Armor> collection;
+        private readonly IApplicationConfiguration config;
 
-        public ArmorRepository()
+        public ArmorRepository(IApplicationConfiguration config)
         {
-            var client = new MongoClient(ApplicationConfiguration.PathfinderConnectionString);
+            this.config = config;
+
+            var client = new MongoClient(config.PathfinderConnectionString);
             var database = client.GetDatabase("pathfinder");
             collection = database.GetCollection<Armor>("Armors");
         }

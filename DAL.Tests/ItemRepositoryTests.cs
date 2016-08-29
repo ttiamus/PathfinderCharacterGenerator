@@ -10,9 +10,11 @@ namespace DAL.Tests
     public class ItemRepositoryTests
     {
         //investigate a way to point this to a test database
-        [TestMethod]
+        /*[TestMethod]
         public void InsertingRecordShouldSucceedWithoutErrors()
         {
+            var config = Substitute
+
             var repo = new ItemRepository();
 
             var request = new InsertItemRequest()
@@ -27,6 +29,6 @@ namespace DAL.Tests
 
             Assert.IsTrue(result.Result.Success);
         }
-        
+        */
     }
 }

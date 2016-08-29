@@ -8,7 +8,7 @@ namespace Core.V2.WeaponDamageTypes.GetAllWeaponDamageTypes
 {
     public class GetAllWeaponDamageTypesRepository : IQueryRepository<GetAllWeaponDamageTypesRequest, List<WeaponDamageTypeResponse>>
     {
-        public Task<Result<List<WeaponDamageTypeResponse>>> SaveChanges(GetAllWeaponDamageTypesRequest request)
+        public Task<List<WeaponDamageTypeResponse>> Execute(GetAllWeaponDamageTypesRequest request)
         {
             throw new System.NotImplementedException();
         }

@@ -8,12 +8,12 @@ namespace Core.V2.WeaponDamageTypes.GetAllWeaponDamageTypes
 {
     public class GetAllWeaponDamageTypesHandler : IQueryHandler<GetAllWeaponDamageTypesRequest, List<WeaponDamageTypeResponse>>
     {
-        public Task<Result> Validate(GetAllWeaponDamageTypesRequest request)
+        public void Validate(GetAllWeaponDamageTypesRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<Result<List<WeaponDamageTypeResponse>>> Execute(GetAllWeaponDamageTypesRequest request)
+        public Task<List<WeaponDamageTypeResponse>> Execute(GetAllWeaponDamageTypesRequest request)
         {
             throw new System.NotImplementedException();
         }

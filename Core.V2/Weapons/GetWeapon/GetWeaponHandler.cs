@@ -7,12 +7,12 @@ namespace Core.V2.Weapons.GetWeapon
 {
     public class GetWeaponHandler : IQueryHandler<GetWeaponRequest, WeaponResponse>
     {
-        public Task<Result> Validate(GetWeaponRequest request)
+        public void Validate(GetWeaponRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<Result<WeaponResponse>> Execute(GetWeaponRequest request)
+        public Task<WeaponResponse> Execute(GetWeaponRequest request)
         {
             throw new System.NotImplementedException();
         }

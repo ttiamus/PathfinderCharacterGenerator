@@ -6,12 +6,12 @@ namespace Core.V2.WeaponDamageTypes.UpdateWeaponDamageType
 {
     public class UpdateWeaponDamageTypeRepository : ICommandHandler<UpdateWeaponDamageTypeRequest>
     {
-        public Task<bool> Validate(UpdateWeaponDamageTypeRequest request)
+        public void Validate(UpdateWeaponDamageTypeRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<Result> Execute(UpdateWeaponDamageTypeRequest request)
+        public Task Execute(UpdateWeaponDamageTypeRequest request)
         {
             throw new System.NotImplementedException();
         }

@@ -6,12 +6,12 @@ namespace Core.V2.Weapons.CreateWeapon
 {
     public class CreateWeaponHandler : ICommandHandler<CreateWeaponRequest>
     {
-        public Task<bool> Validate(CreateWeaponRequest request)
+        public void Validate(CreateWeaponRequest request)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<Result> Execute(CreateWeaponRequest request)
+        public Task Execute(CreateWeaponRequest request)
         {
             throw new System.NotImplementedException();
         }

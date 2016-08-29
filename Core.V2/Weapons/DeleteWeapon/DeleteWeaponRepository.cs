@@ -6,7 +6,7 @@ namespace Core.V2.Weapons.DeleteWeapon
 {
     public class DeleteWeaponRepository : ICommandRepository<DeleteWeaponRequest>
     {
-        public Task<Result> SaveChanges(DeleteWeaponRequest request)
+        public Task SaveChanges(DeleteWeaponRequest request)
         {
             throw new System.NotImplementedException();
         }

@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
     <Compile Include="Controllers\WeaponController.cs" />
+    <Compile Include="Filters\UnhandledExceptionFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

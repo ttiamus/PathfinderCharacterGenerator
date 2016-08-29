@@ -30,6 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=2.2.4.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.2.4\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB.Driver.2.2.3\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.2.4.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.2.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -156,6 +167,10 @@
     <Compile Include="Domains\Models\Responses\DomainResponse.cs" />
     <Compile Include="Armors\ArmorType.cs" />
     <Compile Include="Characters\CharacterSize.cs" />
+    <Compile Include="Items\ItemRepository.cs" />
+    <Compile Include="Items\Models\Data\ItemType.cs" />
+    <Compile Include="Items\Models\Responses\ItemTypeResponse.cs" />
+    <Compile Include="Shared\AbstractMongoRepository.cs" />
     <Compile Include="Shared\IDice.cs" />
     <Compile Include="WeaponDamageTypes\WeaponDamageType.cs" />
     <Compile Include="Feats\CreateFeat\CreateFeatHandler.cs" />
@@ -318,7 +333,16 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ItemTypes\CreateItemType\" />
+    <Folder Include="ItemTypes\DeleteItemType\" />
+    <Folder Include="ItemTypes\GetAllItemTypes\" />
+    <Folder Include="ItemTypes\GetItemType\" />
+    <Folder Include="ItemTypes\UpdateItemType\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

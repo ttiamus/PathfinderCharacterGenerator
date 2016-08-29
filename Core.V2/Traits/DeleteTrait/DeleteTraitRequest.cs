@@ -1,6 +1,8 @@
-﻿namespace Core.V2.Traits.DeleteTrait
+﻿using Common.Interfaces;
+
+namespace Core.V2.Traits.DeleteTrait
 {
-    public class DeleteTraitRequest
+    public class DeleteTraitRequest : IRequest
     {
          
     }

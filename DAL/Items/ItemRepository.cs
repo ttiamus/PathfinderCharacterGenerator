@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Configuration;
 using Common.Results;
 using Core.Items;
 using Core.Items.Requests;
@@ -14,10 +15,12 @@ namespace DAL.Items
     public class ItemRepository : IItemRepository
     {
         private readonly IMongoCollection<Item> collection;
+        private readonly IApplicationConfiguration config;
 
-        public ItemRepository()
+        public ItemRepository(IApplicationConfiguration config)
         {
-            var client = new MongoClient(ApplicationConfiguration.PathfinderConnectionString);
+            this.config = config;
+            var client = new MongoClient(config.PathfinderConnectionString);
             var database = client.GetDatabase("pathfinder");
             collection = database.GetCollection<Item>("Items");
         }

@@ -5,6 +5,6 @@ namespace Common.Interfaces
 {
     public interface IQueryRepository<in T, TU>
     {
-        Task<Result<TU>> SaveChanges(T request);
+        Task<TU> Execute(T request);
     }
 }

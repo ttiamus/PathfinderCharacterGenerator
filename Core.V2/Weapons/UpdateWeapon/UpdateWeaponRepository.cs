@@ -7,7 +7,7 @@ namespace Core.V2.Weapons.UpdateWeapon
 {
     public class UpdateWeaponRepository : ICommandRepository<UpdateWeaponRequest>
     {
-        public Task<Result> SaveChanges(UpdateWeaponRequest request)
+        public Task SaveChanges(UpdateWeaponRequest request)
         {
             throw new System.NotImplementedException();
         }

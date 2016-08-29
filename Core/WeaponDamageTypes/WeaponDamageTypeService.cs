@@ -8,7 +8,7 @@ namespace Core.WeaponDamageTypes
 {
     public class WeaponDamageTypeService : IWeaponDamageTypeService
     {
-        public async Task<Result<List<WeaponDamageTypeResponse>>> GetWeaponDamageTypes(GetWeaponDamageTypesRequest request)
+        public Task<Result<List<WeaponDamageTypeResponse>>> GetWeaponDamageTypes(GetWeaponDamageTypesRequest request)
         {
             throw new System.NotImplementedException();
         }

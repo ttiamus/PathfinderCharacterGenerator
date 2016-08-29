@@ -1,6 +1,8 @@
-﻿namespace Core.V2.Traits.CreateTrait
+﻿using Common.Interfaces;
+
+namespace Core.V2.Traits.CreateTrait
 {
-    public class CreateTraitRequest
+    public class CreateTraitRequest : IRequest
     {
          
     }

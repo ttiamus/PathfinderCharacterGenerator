@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Common;
+using Common.Configuration;
 using Common.Results;
 using Core.Weapons;
 using Core.Weapons.Requests;
@@ -14,10 +15,12 @@ namespace DAL.Weapons
     public class WeaponRepository : IWeaponRepository
     {
         private readonly IMongoCollection<Weapon> collection;
+        private readonly IApplicationConfiguration config;
 
-        public WeaponRepository()
+        public WeaponRepository(IApplicationConfiguration config)
         {
-            var client = new MongoClient(ApplicationConfiguration.PathfinderConnectionString);
+            this.config = config;
+            var client = new MongoClient(config.PathfinderConnectionString);
             var database = client.GetDatabase("pathfinder");
             collection = database.GetCollection<Weapon>("Weapons");
         }

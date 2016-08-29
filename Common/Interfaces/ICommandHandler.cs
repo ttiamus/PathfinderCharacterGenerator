@@ -5,7 +5,7 @@ namespace Common.Interfaces
 {
     public interface ICommandHandler<in T>
     {
-        Task<bool> Validate(T request);
-        Task<Result> Execute(T request);
+        void Validate(T request);
+        Task Execute(T request);
     }
 }

@@ -7,7 +7,7 @@ namespace Core.V2.WeaponProperties.CreateWeaponProperty
 {
     public class CreateWeaponPropertyRepository : ICommandRepository<CreateWeaponPropertyRequest>
     {
-        public Task<Result> SaveChanges(CreateWeaponPropertyRequest request)
+        public Task SaveChanges(CreateWeaponPropertyRequest request)
         {
             throw new System.NotImplementedException();
         }

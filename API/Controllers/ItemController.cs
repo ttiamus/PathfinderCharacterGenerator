@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
+using API.Filters;
 using Core.Items;
 using Core.Items.Requests;
 
@@ -15,7 +17,8 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/items")]
+        [Route("items")]
+        [UnhandledExceptionFilter]
         public async Task<IHttpActionResult> GetItems()
         {
             var result = await itemService.GetItems();
@@ -29,7 +32,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("api/items/{id}")]
+        [Route("items/itemId/{id}")]
         public async Task<IHttpActionResult> GetItem(GetItemRequest request)
         {
             var result = await itemService.GetItem(request);
@@ -43,7 +46,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [Route("api/items")]
+        [Route("items")]
         public async Task<IHttpActionResult> InsertItem(InsertItemRequest request)
         {
             var result = await itemService.InsertItem(request);
@@ -56,7 +59,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        [Route("api/items/")] 
+        [Route("items")] 
         public async Task<IHttpActionResult> UpdateItem(UpdateItemRequest request)
         {
             var result = await itemService.UpdateItem(request);
@@ -70,7 +73,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        [Route("api/items/{id}")]
+        [Route("items/itemId/{id}")]
         public async Task<IHttpActionResult> DeleteItem(DeleteItemRequest request)
         {
             var result = await itemService.DeleteItem(request);
