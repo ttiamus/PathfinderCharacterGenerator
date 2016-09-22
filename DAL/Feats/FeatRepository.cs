@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common;
-using Common.Configuration;
+using Common.Configuration.EnvironmentConfiguration;
 using Core.Feats;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -12,8 +11,8 @@ namespace DAL.Feats
     public class FeatRepository : IFeatRepository
     {
         private readonly IMongoCollection<Feat> collection;
-        private readonly IApplicationConfiguration config;
-        public FeatRepository(IApplicationConfiguration config)
+        private readonly IEnvironmentConfiguration config;
+        public FeatRepository(IEnvironmentConfiguration config)
         {
             this.config = config;
             var client = new MongoClient(config.PathfinderConnectionString);

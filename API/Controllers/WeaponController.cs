@@ -2,7 +2,6 @@
 using System.Web.Http;
 using Core.Weapons;
 using Core.Weapons.Requests;
-using Core.Weapons.Responses;
 
 namespace API.Controllers
 {

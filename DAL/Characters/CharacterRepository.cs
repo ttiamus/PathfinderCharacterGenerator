@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common;
-using Common.Configuration;
+using Common.Configuration.EnvironmentConfiguration;
 using Core.Characters;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -12,9 +11,9 @@ namespace DAL.Characters
     public class CharacterRepository : ICharacterRepository
     {
         private readonly IMongoCollection<Character> collection;
-        private readonly IApplicationConfiguration config;
+        private readonly IEnvironmentConfiguration config;
 
-        public CharacterRepository(IApplicationConfiguration config)
+        public CharacterRepository(IEnvironmentConfiguration config)
         {
             this.config = config;
             var client = new MongoClient(config.PathfinderConnectionString);

@@ -1,11 +1,10 @@
-﻿using System.Configuration;
-using Common.Configuration.EnvironmentConfiguration;
+﻿using Common.Configuration.EnvironmentConfiguration;
 
 namespace Common.Configuration
 {
-    public static class ApplicationConfiguration
+    public class ApplicationConfiguration : IApplicationConfiguration
     {
-        public static IApplicationConfiguration GetConfiguration()
+        public IEnvironmentConfiguration GetConfiguration()
         {
             return new ProductionConfiguration();
         }

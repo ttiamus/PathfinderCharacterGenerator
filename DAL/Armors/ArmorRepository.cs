@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common;
-using Common.Configuration;
+using Common.Configuration.EnvironmentConfiguration;
 using Core.Armors;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -12,9 +11,9 @@ namespace DAL.Armors
     public class ArmorRepository : IArmorRepository
     {
         private readonly IMongoCollection<Armor> collection;
-        private readonly IApplicationConfiguration config;
+        private readonly IEnvironmentConfiguration config;
 
-        public ArmorRepository(IApplicationConfiguration config)
+        public ArmorRepository(IEnvironmentConfiguration config)
         {
             this.config = config;
 

@@ -3,10 +3,8 @@ using System.Threading.Tasks;
 using Common.Results;
 using Core.WeaponDamageTypes;
 using Core.WeaponDamageTypes.Requests;
-using Core.WeaponDamageTypes.Responses;
 using Core.WeaponProperties;
 using Core.WeaponProperties.Requests;
-using Core.WeaponProperties.Responses;
 using Core.Weapons.Requests;
 using Core.Weapons.Responses;
 

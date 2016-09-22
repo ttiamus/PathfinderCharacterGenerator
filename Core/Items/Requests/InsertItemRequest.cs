@@ -1,6 +1,4 @@
-﻿using Core.Enum;
-
-namespace Core.Items.Requests
+﻿namespace Core.Items.Requests
 {
     public class InsertItemRequest
     {

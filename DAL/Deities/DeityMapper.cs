@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Core.Deites;
 using Core.Deites.Requests;
 using Core.Deites.Responses;
 using DAL.Domains;

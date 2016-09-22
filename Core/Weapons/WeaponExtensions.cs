@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Core.Weapons.Requests;
+﻿using Core.Weapons.Requests;
 
 namespace Core.Weapons
 {

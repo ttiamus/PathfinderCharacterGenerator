@@ -10,12 +10,7 @@ namespace Core.V2.Items.GetAllItems
 {
     public class GetAllItemsRepository : ItemRepository, IQueryRepository<GetAllItemsRequest, IEnumerable<ItemResponse>>
     {
-        private readonly IApplicationConfiguration config;
-
-        public GetAllItemsRepository(IApplicationConfiguration config) : base(config)
-        {
-            this.config = config;
-        }
+        public GetAllItemsRepository(IApplicationConfiguration config) : base(config.GetConfiguration()) { }
 
         public async Task<IEnumerable<ItemResponse>> Execute(GetAllItemsRequest request)
         {

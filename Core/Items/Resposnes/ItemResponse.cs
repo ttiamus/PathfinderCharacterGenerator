@@ -1,6 +1,4 @@
-﻿using Core.Enum;
-
-namespace Core.Items.Resposnes
+﻿namespace Core.Items.Resposnes
 {
     public class ItemResponse
     {

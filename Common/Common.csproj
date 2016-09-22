@@ -44,6 +44,7 @@
     <Compile Include="Configuration\ApplicationConfiguration.cs" />
     <Compile Include="Configuration\EnvironmentConfiguration\ProductionConfiguration.cs" />
     <Compile Include="Configuration\EnvironmentConfiguration\TestConfiguration.cs" />
+    <Compile Include="Configuration\EnvironmentConfiguration\IEnvironmentConfiguration.cs" />
     <Compile Include="Configuration\IApplicationConfiguration.cs" />
     <Compile Include="Interfaces\ICommandHandler.cs" />
     <Compile Include="Interfaces\IQueryHandler.cs" />

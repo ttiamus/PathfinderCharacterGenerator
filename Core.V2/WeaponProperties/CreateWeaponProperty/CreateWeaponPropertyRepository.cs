@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Common.Interfaces;
-using Common.Results;
-using Core.V2.Weapons.CreateWeapon;
 
 namespace Core.V2.WeaponProperties.CreateWeaponProperty
 {

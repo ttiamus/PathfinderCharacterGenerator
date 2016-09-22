@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using Core.Alignments;
-using Core.Domains;
 using Core.Domains.Requests;
-using Core.Weapons.Requests;
-using Core.Weapons.Responses;
 
 namespace Core.Deites.Requests
 {

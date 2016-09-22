@@ -1,6 +1,4 @@
-﻿using System.Security.Policy;
-
-namespace Core.Deites.Requests
+﻿namespace Core.Deites.Requests
 {
     public class GetDeityRequest
     {

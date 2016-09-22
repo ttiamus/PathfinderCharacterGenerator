@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Common.Interfaces;
 using Core.V2.Items.Models.Responses;
+using Core.V2.ItemTypes.Models;
 
 namespace Core.V2.Items.GetAllItems
 {

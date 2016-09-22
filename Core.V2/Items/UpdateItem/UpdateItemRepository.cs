@@ -1,13 +1,21 @@
 ﻿using System.Threading.Tasks;
+using Common.Configuration;
 using Common.Interfaces;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Core.V2.Items.UpdateItem
 {
-    public class UpdateItemRepository : ICommandRepository<UpdateItemRequest>
+    public class UpdateItemRepository : ItemRepository, ICommandRepository<UpdateItemRequest>
     {
-        public Task SaveChanges(UpdateItemRequest request)
+        public UpdateItemRepository(IApplicationConfiguration config) : base(config.GetConfiguration())
         {
-            throw new System.NotImplementedException();
+            //this.config = config;
+        }
+
+        public async Task SaveChanges(UpdateItemRequest request)
+        {
+            await collection.ReplaceOneAsync(x => x.Id.Equals(ObjectId.Parse(request.Id)), request.ToItem());
         }
     }
 }

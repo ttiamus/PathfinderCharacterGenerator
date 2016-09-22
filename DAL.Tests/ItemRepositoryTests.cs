@@ -1,8 +1,4 @@
-﻿using System;
-using Core.Enum;
-using Core.Items.Requests;
-using DAL.Items;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DAL.Tests
 {

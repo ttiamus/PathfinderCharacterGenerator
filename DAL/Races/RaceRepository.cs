@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common;
-using Common.Configuration;
+using Common.Configuration.EnvironmentConfiguration;
 using Common.Results;
 using Core.Races;
 using Core.Races.Requests;
@@ -15,8 +14,8 @@ namespace DAL.Races
     public class RaceRepository : IRaceRepository
     {
         private readonly IMongoCollection<Race> collection;
-        private readonly IApplicationConfiguration config;
-        public RaceRepository(IApplicationConfiguration config)
+        private readonly IEnvironmentConfiguration config;
+        public RaceRepository(IEnvironmentConfiguration config)
         {
             this.config = config;
             var client = new MongoClient(config.PathfinderConnectionString);

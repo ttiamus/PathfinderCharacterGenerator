@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common;
-using Common.Configuration;
+using Common.Configuration.EnvironmentConfiguration;
 using Common.Results;
 using Core.Items;
 using Core.Items.Requests;
@@ -15,9 +14,9 @@ namespace DAL.Items
     public class ItemRepository : IItemRepository
     {
         private readonly IMongoCollection<Item> collection;
-        private readonly IApplicationConfiguration config;
+        private readonly IEnvironmentConfiguration config;
 
-        public ItemRepository(IApplicationConfiguration config)
+        public ItemRepository(IEnvironmentConfiguration config)
         {
             this.config = config;
             var client = new MongoClient(config.PathfinderConnectionString);

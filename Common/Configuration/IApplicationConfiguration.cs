@@ -1,11 +1,9 @@
-﻿namespace Common.Configuration
+﻿using Common.Configuration.EnvironmentConfiguration;
+
+namespace Common.Configuration
 {
     public interface IApplicationConfiguration
     {
-        string MongoUserName { get; }
-        string MongoPassword { get; }
-        string PathfinderConnectionString { get; }
-        string CharacterConnectionString { get; }
-        string PathfinderDatabaseName { get; }
+        IEnvironmentConfiguration GetConfiguration();
     }
 }

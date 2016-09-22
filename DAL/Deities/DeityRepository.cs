@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common;
-using Common.Configuration;
+using Common.Configuration.EnvironmentConfiguration;
 using Common.Results;
 using Core.Deites;
 using Core.Deites.Requests;
@@ -15,9 +14,9 @@ namespace DAL.Deities
     public class DeityRepository : IDeityRepository
     {
         private readonly IMongoCollection<Deity> collection;
-        private readonly IApplicationConfiguration config;
+        private readonly IEnvironmentConfiguration config;
 
-        public DeityRepository(IApplicationConfiguration config)
+        public DeityRepository(IEnvironmentConfiguration config)
         {
             this.config = config;
             var client = new MongoClient(config.PathfinderConnectionString);

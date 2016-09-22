@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Common.Interfaces;
+﻿using Common.Interfaces;
 
 namespace Core.V2.Weapons.UpdateWeapon
 {

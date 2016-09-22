@@ -42,6 +42,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -168,8 +169,19 @@
     <Compile Include="Armors\ArmorType.cs" />
     <Compile Include="Characters\CharacterSize.cs" />
     <Compile Include="Items\ItemRepository.cs" />
-    <Compile Include="Items\Models\Data\ItemType.cs" />
-    <Compile Include="Items\Models\Responses\ItemTypeResponse.cs" />
+    <Compile Include="ItemTypes\DeleteItemType\DeleteItemHandler.cs" />
+    <Compile Include="ItemTypes\DeleteItemType\DeleteItemRepository.cs" />
+    <Compile Include="ItemTypes\Models\ItemType.cs" />
+    <Compile Include="ItemTypes\DeleteItemType\DeleteItemRequest.cs" />
+    <Compile Include="ItemTypes\GetAllItemTypes\GetAllItemTypesRequest.cs" />
+    <Compile Include="ItemTypes\GetItemType\GetItemTypeRequest.cs" />
+    <Compile Include="ItemTypes\Models\ItemTypeResponse.cs" />
+    <Compile Include="ItemTypes\CreateItemType\CreateItemTypeHandler.cs" />
+    <Compile Include="ItemTypes\CreateItemType\CreateItemTypeRepository.cs" />
+    <Compile Include="ItemTypes\CreateItemType\CreateItemTypeRequest.cs" />
+    <Compile Include="ItemTypes\ItemTypeMapper.cs" />
+    <Compile Include="ItemTypes\ItemTypeRepository.cs" />
+    <Compile Include="ItemTypes\UpdateItemType\UpdateItemTypeRequest.cs" />
     <Compile Include="Shared\AbstractMongoRepository.cs" />
     <Compile Include="Shared\IDice.cs" />
     <Compile Include="WeaponDamageTypes\WeaponDamageType.cs" />
@@ -202,7 +214,7 @@
     <Compile Include="Items\GetItem\GetItemHandler.cs" />
     <Compile Include="Items\GetItem\GetItemRepository.cs" />
     <Compile Include="Items\IItemService.cs" />
-    <Compile Include="Items\ItemExtensions.cs" />
+    <Compile Include="Items\ItemMappers.cs" />
     <Compile Include="Items\ItemService.cs" />
     <Compile Include="Items\DeleteItem\DeleteItemRequest.cs" />
     <Compile Include="Items\GetItem\GetItemRequest.cs" />
@@ -336,13 +348,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ItemTypes\CreateItemType\" />
-    <Folder Include="ItemTypes\DeleteItemType\" />
-    <Folder Include="ItemTypes\GetAllItemTypes\" />
-    <Folder Include="ItemTypes\GetItemType\" />
-    <Folder Include="ItemTypes\UpdateItemType\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

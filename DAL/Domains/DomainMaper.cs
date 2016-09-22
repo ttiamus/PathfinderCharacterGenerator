@@ -1,5 +1,4 @@
-﻿using Core.Domains;
-using Core.Domains.Requests;
+﻿using Core.Domains.Requests;
 using Core.Domains.Responses;
 
 namespace DAL.Domains

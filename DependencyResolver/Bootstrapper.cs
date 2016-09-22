@@ -32,7 +32,7 @@ namespace DependencyResolver
         {
             var Builder = new ContainerBuilder();
 
-            Builder.RegisterType<IApplicationConfiguration>().SingleInstance();
+            Builder.RegisterType<ApplicationConfiguration>().As<IApplicationConfiguration>().SingleInstance();
 
             //Armor
             Builder.RegisterType<ArmorService>().As<IArmorService>().InstancePerRequest();

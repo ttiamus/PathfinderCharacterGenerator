@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using API.Filters;
@@ -7,6 +7,7 @@ using Core.V2.Items.CreateItem;
 using Core.V2.Items.DeleteItem;
 using Core.V2.Items.GetAllItems;
 using Core.V2.Items.GetItem;
+using Core.V2.Items.Models.Responses;
 using Core.V2.Items.UpdateItem;
 
 
@@ -24,10 +25,9 @@ namespace API.Controllers
         [HttpGet]
         [Route("items")]
         [UnhandledExceptionFilter]
-        public async Task<IHttpActionResult> GetItems(GetAllItemsRequest request)
+        public async Task<IEnumerable<ItemResponse>> GetItems(GetAllItemsRequest request)
         {
-            await itemService.GetAllItems(request);
-            return Ok();
+            return await itemService.GetAllItems(request);
         }
 
         [HttpGet]

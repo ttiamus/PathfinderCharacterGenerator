@@ -1,13 +1,16 @@
 ﻿using System.Threading.Tasks;
+using Common.Configuration;
 using Common.Interfaces;
 
 namespace Core.V2.Items.CreateItem
 {
-    public class CreateItemRepository : ICommandRepository<CreateItemRequest>
+    public class CreateItemRepository : ItemRepository, ICommandRepository<CreateItemRequest>
     {
-        public Task SaveChanges(CreateItemRequest request)
+        public CreateItemRepository(IApplicationConfiguration config) : base(config.GetConfiguration()) { }
+
+        public async Task SaveChanges(CreateItemRequest request)
         {
-            throw new System.NotImplementedException();
+            await collection.InsertOneAsync(request.ToItem());
         }
     }
 }

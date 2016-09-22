@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common;
-using Common.Configuration;
+﻿using Common.Configuration.EnvironmentConfiguration;
+using Core.V2.Items.Models.Data;
 using Core.V2.Shared;
 
 namespace Core.V2.Items
 {
-    public class ItemRepository : AbstractMongoRepository
+    public class ItemRepository : AbstractMongoRepository<Item>
     {
-        public ItemRepository(IApplicationConfiguration config) : base(config.PathfinderConnectionString, config.PathfinderDatabaseName, "Items")
-        {
-        }
+        public ItemRepository(IEnvironmentConfiguration config) : base(config.PathfinderConnectionString, config.PathfinderDatabaseName, "Items") { }
     }
 }
