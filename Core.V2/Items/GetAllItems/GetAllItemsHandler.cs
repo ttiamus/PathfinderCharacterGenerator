@@ -30,7 +30,7 @@ namespace Core.V2.Items.GetAllItems
 
             foreach (var item in itemList)
             {
-                item.ItemType = GetItemType(item.ItemTypeId);
+                //item.ItemType = GetItemType(item.ItemTypeId);
             }
 
             return itemList;

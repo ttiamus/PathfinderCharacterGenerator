@@ -1,4 +1,5 @@
-﻿using Core.V2.Items.CreateItem;
+﻿using System;
+using Core.V2.Items.CreateItem;
 using Core.V2.Items.Models.Data;
 using Core.V2.Items.Models.Responses;
 using Core.V2.Items.UpdateItem;
@@ -14,6 +15,7 @@ namespace Core.V2.Items
             return new ItemResponse()
             {
                 Id = item.Id.ToString(),
+                Description = item.Description,
                 Name = item.Name,
                 ItemType = new ItemTypeResponse() { Id = item.ItemTypeId.ToString() },
                 Cost = item.Cost,
@@ -26,7 +28,8 @@ namespace Core.V2.Items
             return new Item()
             {
                 Name = request.Name,
-                ItemTypeId = ObjectId.Parse(request.ItemTypeId),
+                Description = request.Description,
+                ItemTypeId = Convert.ToInt32(request.ItemTypeId),
                 Cost = request.Cost,
                 Weight = request.Weight
             };
@@ -38,7 +41,8 @@ namespace Core.V2.Items
             {
                 Id = ObjectId.Parse(request.Id),
                 Name = request.Name,
-                ItemTypeId = ObjectId.Parse(request.ItemTypeId),
+                Description = request.Description,
+                ItemTypeId = Convert.ToInt32(request.ItemTypeId),
                 Cost = request.Cost,
                 Weight = request.Weight
             };

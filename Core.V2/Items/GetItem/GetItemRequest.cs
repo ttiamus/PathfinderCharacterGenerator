@@ -3,5 +3,10 @@
     public class GetItemRequest
     {
         public string Id { get; set; }
+
+        public GetItemRequest(string id)
+        {
+            this.Id = id;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using API.Filters;
 using Core.V2.Items;
 using Core.V2.Items.CreateItem;
@@ -13,6 +14,8 @@ using Core.V2.Items.UpdateItem;
 
 namespace API.Controllers
 {
+    //Allow any request from anywhere
+    [EnableCors("*", "*", "*")]
     public class ItemController : ApiController
     {
         private readonly IItemService itemService;
@@ -31,44 +34,35 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        [Route("items/itemId/{id}")]
+        [Route("items/{id}")]
         [UnhandledExceptionFilter]
-        public async Task<IHttpActionResult> GetItem(GetItemRequest request)
+        public async Task<ItemResponse> GetItem(string id)
         {
-            await itemService.GetItem(request);
-            return Ok();
-
+            return await itemService.GetItem(new GetItemRequest(id));
         }
 
         [HttpPost]
         [Route("items")]
         [UnhandledExceptionFilter]
-        public async Task<IHttpActionResult> InsertItem(CreateItemRequest request)
+        public async Task InsertItem(CreateItemRequest request)
         {
             await itemService.CreateItem(request);
-            return Ok();
         }
 
         [HttpPut]
         [Route("items")]
         [UnhandledExceptionFilter]
-        public async Task<IHttpActionResult> UpdateItem(UpdateItemRequest request)
+        public async Task UpdateItem(UpdateItemRequest request)
         {
             await itemService.UpdateItem(request);
-
-            return Ok();
-
-            //return BadRequest($"Could not find item with Id {item.Id}");
         }
 
         [HttpDelete]
-        [Route("items/itemId/{id}")]
+        [Route("items/{id}")]
         [UnhandledExceptionFilter]
-        public async Task<IHttpActionResult> DeleteItem(DeleteItemRequest request)
+        public async Task DeleteItem(string id)
         {
-            await itemService.DeleteItem(request);
-
-            return Ok();
+            await itemService.DeleteItem(new DeleteItemRequest(id));
         }
     }
 }
